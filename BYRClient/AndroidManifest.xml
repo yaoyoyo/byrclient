@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="haitong.yao.byrclient"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="haitong.yao.byrclient.StartActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="haitong.yao.byrclient.LoginActivity" >
+        </activity>
+        <activity
+            android:name="haitong.yao.byrclient.MainActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="haitong.yao.byrclient.AboutActivity" />
+        <activity android:name="haitong.yao.byrclient.MailboxActivity" />
+        <activity android:name="haitong.yao.byrclient.FocusActivity" />
+        <activity android:name="haitong.yao.byrclient.RecommendedActivity" />
+        <activity android:name="haitong.yao.byrclient.SectionsActivity" />
+        <activity android:name="haitong.yao.byrclient.ToptenActivity" />
+        <activity android:name="haitong.yao.byrclient.UserInfoActivity" />
+        <activity android:name="haitong.yao.byrclient.FavouriteActivity" />
+    </application>
+
+</manifest>

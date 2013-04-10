@@ -1,0 +1,161 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EEEEEE"
+    android:orientation="vertical"
+    android:weightSum="5" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/sections_bbs_staff"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/bbs_staff"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/sections_tech"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/tech"
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/sections_campus"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/campus"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/sections_information"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/information"
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/sections_life"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/life"
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/sections_art"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="3dp"
+                android:background="@drawable/blue_bg"
+                android:gravity="center"
+                android:text="@string/art"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/sections_entertament"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="2"
+            android:background="@drawable/blue_bg"
+            android:gravity="center"
+            android:text="@string/entertainment"
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/sections_sports"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_bg"
+                android:gravity="center"
+                android:text="@string/sports"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/sections_game"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_bg"
+                android:gravity="center"
+                android:text="@string/game"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

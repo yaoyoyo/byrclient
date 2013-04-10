@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BYRClient</string>
+    <string name="app_title">北邮人论坛</string>
+
+    <!-- 异常 -->
+    <string name="warning_empty_username">用户名不能为空</string>
+    <string name="warning_empty_password">密码不能为空</string>
+    <string name="error_network">连接错误，请检查您的网络</string>
+    <string name="fail_get_content">获取内容失败，请稍后再试</string>
+
+    <!-- 登录 -->
+    <string name="user_name">用户名</string>
+    <string name="user_password">密  码</string>
+    <string name="login">登录</string>
+    <string name="clear">清除</string>
+    <string name="register">注册</string>
+
+    <!-- 主页 -->
+    <string name="byr">BYR</string>
+    <string name="topten">十大</string>
+    <string name="focus">关注</string>
+    <string name="recommended">推荐</string>
+    <string name="favoruite">收藏</string>
+    <string name="sections">分区</string>
+    <string name="user">用户</string>
+    <string name="mailbox">信箱</string>
+
+    <!-- 关于 -->
+    <string name="todear">想听光哥唱歌了o(╯□╰)o\n想去网城直包了~\\(≧▽≦)/~\n\n意见建议:@MrRight (bbs)</string>
+
+    <!-- 分区 -->
+    <string name="bbs_staff">本站\n站务</string>
+    <string name="campus">北邮\n校园</string>
+    <string name="tech">学术科技</string>
+    <string name="information">信息社会</string>
+    <string name="art">人文\n艺术</string>
+    <string name="life">生活时尚</string>
+    <string name="entertainment">休闲娱乐</string>
+    <string name="sports">体育\n健身</string>
+    <string name="game">游戏\n对战</string>
+
+    <!-- 提醒 -->
+    <string name="loading">努力加载中...</string>
+
+</resources>

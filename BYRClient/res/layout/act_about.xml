@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/light_blue" >
+
+    <ImageView
+        android:id="@+id/about_07106"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/about_07106" />
+
+    <ImageView
+        android:id="@+id/about_423"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/about_07106"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/about_423" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/about_423"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/about_to"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/todear"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</RelativeLayout>
