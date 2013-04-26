@@ -24,7 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="@string/loading"
+            android:text="@string/notification_loading"
             android:textColor="@color/gray_text"
             android:textSize="28sp" />
     </LinearLayout>

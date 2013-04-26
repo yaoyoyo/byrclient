@@ -1,9 +1,14 @@
 package haitong.yao.byrclient;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.text.TextPaint;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -18,7 +23,7 @@ public class MainActivity extends NoTitleActivity {
     private TextView mFavourite;
     private TextView mUser;
     private TextView mMailbox;
-    
+
     private TextPaint mTextPaint;
 
     private Context mContext;
@@ -131,6 +136,33 @@ public class MainActivity extends NoTitleActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    MainActivity.this);
+            builder.setTitle(R.string.main_sure_exit)
+                    .setCancelable(true)
+                    .setPositiveButton(R.string.main_ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int id) {
+                                    finish();
+                                }
+                            })
+                    .setNegativeButton(R.string.main_cancel,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                        int id) {
+                                    dialog.cancel();
+                                }
+                            });
+            builder.show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/bbs_staff"
+            android:text="@string/sections_bbs_staff"
             android:textColor="@color/white"
             android:textSize="28sp" />
 
@@ -32,7 +32,7 @@
             android:layout_weight="2"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/tech"
+            android:text="@string/sections_tech"
             android:textColor="@color/white"
             android:textSize="36sp" />
     </LinearLayout>
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/campus"
+            android:text="@string/sections_campus"
             android:textColor="@color/white"
             android:textSize="28sp" />
 
@@ -64,7 +64,7 @@
             android:layout_weight="2"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/information"
+            android:text="@string/sections_information"
             android:textColor="@color/white"
             android:textSize="36sp" />
     </LinearLayout>
@@ -84,7 +84,7 @@
             android:layout_weight="2"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/life"
+            android:text="@string/sections_life"
             android:textColor="@color/white"
             android:textSize="36sp" />
 
@@ -100,7 +100,7 @@
                 android:layout_margin="3dp"
                 android:background="@drawable/blue_bg"
                 android:gravity="center"
-                android:text="@string/art"
+                android:text="@string/sections_art"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
         </LinearLayout>
@@ -121,7 +121,7 @@
             android:layout_weight="2"
             android:background="@drawable/blue_bg"
             android:gravity="center"
-            android:text="@string/entertainment"
+            android:text="@string/sections_entertainment"
             android:textColor="@color/white"
             android:textSize="36sp" />
 
@@ -140,7 +140,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/blue_bg"
                 android:gravity="center"
-                android:text="@string/sports"
+                android:text="@string/sections_sports"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
 
@@ -152,7 +152,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/blue_bg"
                 android:gravity="center"
-                android:text="@string/game"
+                android:text="@string/sections_game"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
         </LinearLayout>
