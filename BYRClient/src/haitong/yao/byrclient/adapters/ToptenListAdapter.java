@@ -1,6 +1,7 @@
 package haitong.yao.byrclient.adapters;
 
 import haitong.yao.byrclient.R;
+import haitong.yao.byrclient.cache.ReadItems;
 import haitong.yao.byrclient.models.Article;
 
 import java.util.ArrayList;
@@ -78,6 +79,13 @@ public class ToptenListAdapter extends BaseAdapter {
                 viewHolder.hasAttachment.setVisibility(View.VISIBLE);
             } else {
                 viewHolder.hasAttachment.setVisibility(View.GONE);
+            }
+            if (ReadItems.isArticleRead(article.getId())) {
+                viewHolder.title.setTextColor(0xFFFFFFFF);
+                viewHolder.board.setTextColor(0xFFFFFFFF);
+            } else {
+                viewHolder.title.setTextColor(0xFFDDDDDD);
+                viewHolder.board.setTextColor(0xFFDDDDDD);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

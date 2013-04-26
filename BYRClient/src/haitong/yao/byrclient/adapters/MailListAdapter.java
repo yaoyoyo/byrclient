@@ -63,7 +63,7 @@ public class MailListAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.title = (TextView) convertView
                     .findViewById(R.id.topten_item_title);
-            viewHolder.board = (TextView) convertView
+            viewHolder.from = (TextView) convertView
                     .findViewById(R.id.topten_item_board);
             viewHolder.hasAttachment = (ImageView) convertView
                     .findViewById(R.id.topten_item_has_attachment);
@@ -73,14 +73,18 @@ public class MailListAdapter extends BaseAdapter {
         viewHolder = (ViewHolder) convertView.getTag();
         try {
             viewHolder.title.setText(mail.getTitle());
-            viewHolder.board.setText("From: " + mail.getUser().getId());
+            viewHolder.from.setText("From: " + mail.getUser().getId());
             if (mail.getHasAttachment()) {
                 viewHolder.hasAttachment.setVisibility(View.VISIBLE);
             } else {
                 viewHolder.hasAttachment.setVisibility(View.GONE);
             }
             if (!mail.getIsRead()) {
-                viewHolder.title.setTextColor(0xFFFF4500);
+                viewHolder.title.setTextColor(0xFFFFFFFF);
+                viewHolder.from.setTextColor(0xFFFFFFFF);
+            } else {
+                viewHolder.title.setTextColor(0xFFDDDDDD);
+                viewHolder.from.setTextColor(0xFFDDDDDD);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -91,7 +95,7 @@ public class MailListAdapter extends BaseAdapter {
     private class ViewHolder {
 
         TextView title;
-        TextView board;
+        TextView from;
         ImageView hasAttachment;
     }
 
