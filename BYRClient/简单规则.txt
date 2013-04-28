@@ -1,0 +1,26 @@
+1.Activity中的成员变量和方法，排序如下：
+
+	public static final
+	private static final
+	
+	public 
+	protected
+	private
+	
+	需要override的方法
+	public static 方法
+	public 方法
+	private 方法
+	
+	自定义接口和内部类
+	
+	
+	
+2.图片、字符串、布局文件命名方法：
+
+	属于某个Activity的：
+	act_Activity名_资源名
+	
+	不属于特定界面的：
+	vw(icon)_资源名
+	

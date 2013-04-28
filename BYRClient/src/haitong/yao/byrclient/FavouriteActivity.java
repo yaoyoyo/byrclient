@@ -43,18 +43,9 @@ public class FavouriteActivity extends NoTitleActivity implements
         mLoadingView = findViewById(R.id.loading_view);
     }
 
-    private void initAdapter() {
-        mListAdapter = new FavouriteListAdapter(mContext);
-        mFavouriteList.setAdapter(mListAdapter);
-    }
-
     @Override
     protected void setListeners() {
         mFavouriteList.setOnItemClickListener(this);
-    }
-
-    private void getFavourites() {
-        new GetFavouriteTask(mContext, TOP_LEVEL, this).execute();
     }
 
     @Override
@@ -75,5 +66,14 @@ public class FavouriteActivity extends NoTitleActivity implements
             mListAdapter.setContent((ArrayList<Board>) result);
             mListAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void initAdapter() {
+        mListAdapter = new FavouriteListAdapter(mContext);
+        mFavouriteList.setAdapter(mListAdapter);
+    }
+
+    private void getFavourites() {
+        new GetFavouriteTask(mContext, TOP_LEVEL, this).execute();
     }
 }

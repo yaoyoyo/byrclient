@@ -52,11 +52,6 @@ public class MailboxActivity extends NoTitleActivity implements
         mLoadingView = findViewById(R.id.loading_view);
     }
 
-    private void initAdapter() {
-        mListAdapter = new MailListAdapter(mContext);
-        mMailList.setAdapter(mListAdapter);
-    }
-
     @Override
     protected void setListeners() {
         mMailList.setOnItemClickListener(this);
@@ -67,10 +62,6 @@ public class MailboxActivity extends NoTitleActivity implements
                 startActivity(intent);
             }
         });
-    }
-
-    private void getMails() {
-        new GetMailsTask(mContext, "inbox", this).execute();
     }
 
     @Override
@@ -96,6 +87,15 @@ public class MailboxActivity extends NoTitleActivity implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
             long id) {
+    }
+
+    private void initAdapter() {
+        mListAdapter = new MailListAdapter(mContext);
+        mMailList.setAdapter(mListAdapter);
+    }
+
+    private void getMails() {
+        new GetMailsTask(mContext, "inbox", this).execute();
     }
 
 }

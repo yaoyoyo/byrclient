@@ -21,7 +21,7 @@ public class FocusActivity extends NoTitleActivity implements
 
     private final int DIVIDER_HEIGHT = 6;
 
-    private ListView mToptenList;
+    private ListView mFocusList;
     private ToptenListAdapter mListAdapter;
     private View mLoadingView;
 
@@ -39,20 +39,20 @@ public class FocusActivity extends NoTitleActivity implements
 
     @Override
     protected void findViewsById() {
-        mToptenList = (ListView) findViewById(R.id.focus_list);
-        mToptenList.setDivider(null);
-        mToptenList.setDividerHeight(DIVIDER_HEIGHT);
+        mFocusList = (ListView) findViewById(R.id.focus_list);
+        mFocusList.setDivider(null);
+        mFocusList.setDividerHeight(DIVIDER_HEIGHT);
         mLoadingView = findViewById(R.id.loading_view);
     }
 
     private void initAdapter() {
         mListAdapter = new ToptenListAdapter(mContext);
-        mToptenList.setAdapter(mListAdapter);
+        mFocusList.setAdapter(mListAdapter);
     }
 
     @Override
     protected void setListeners() {
-        mToptenList.setOnItemClickListener(this);
+        mFocusList.setOnItemClickListener(this);
     }
 
     private void getArticles() {
@@ -72,7 +72,7 @@ public class FocusActivity extends NoTitleActivity implements
         if (null == result) {
             BYRToast.showLongToast(mContext, R.string.fail_get_content);
         } else {
-            mToptenList.setVisibility(View.VISIBLE);
+            mFocusList.setVisibility(View.VISIBLE);
             mListAdapter.setContent((ArrayList<Article>) result);
             mListAdapter.notifyDataSetChanged();
         }

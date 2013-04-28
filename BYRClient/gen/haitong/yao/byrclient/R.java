@@ -42,7 +42,7 @@ public final class R {
         public static final int about_423=0x7f080001;
         public static final int about_to=0x7f080002;
         public static final int favourite_gv=0x7f080003;
-        public static final int favourite_item_name=0x7f080029;
+        public static final int favourite_item_name=0x7f08002a;
         public static final int focus_list=0x7f080005;
         public static final int loading_view=0x7f080004;
         public static final int login_clear=0x7f08000a;
@@ -72,20 +72,21 @@ public final class R {
         public static final int sections_sports=0x7f08001e;
         public static final int sections_tech=0x7f080018;
         public static final int start_logo=0x7f080020;
-        public static final int title_left=0x7f08002a;
-        public static final int title_middle=0x7f08002b;
-        public static final int title_right=0x7f08002c;
-        public static final int topten_item_board=0x7f08002e;
-        public static final int topten_item_has_attachment=0x7f08002f;
-        public static final int topten_item_title=0x7f08002d;
-        public static final int topten_list=0x7f080021;
-        public static final int userinfo_gender=0x7f080024;
-        public static final int userinfo_login_count=0x7f080027;
-        public static final int userinfo_login_info=0x7f080028;
-        public static final int userinfo_name=0x7f080022;
-        public static final int userinfo_portrait=0x7f080023;
-        public static final int userinfo_post_count=0x7f080026;
-        public static final int userinfo_sign=0x7f080025;
+        public static final int subject_list=0x7f080021;
+        public static final int title_left=0x7f08002b;
+        public static final int title_middle=0x7f08002c;
+        public static final int title_right=0x7f08002d;
+        public static final int topten_item_board=0x7f08002f;
+        public static final int topten_item_has_attachment=0x7f080030;
+        public static final int topten_item_title=0x7f08002e;
+        public static final int topten_list=0x7f080022;
+        public static final int userinfo_gender=0x7f080025;
+        public static final int userinfo_login_count=0x7f080028;
+        public static final int userinfo_login_info=0x7f080029;
+        public static final int userinfo_name=0x7f080023;
+        public static final int userinfo_portrait=0x7f080024;
+        public static final int userinfo_post_count=0x7f080027;
+        public static final int userinfo_sign=0x7f080026;
     }
     public static final class layout {
         public static final int act_about=0x7f030000;
@@ -97,12 +98,13 @@ public final class R {
         public static final int act_recommended=0x7f030006;
         public static final int act_sections=0x7f030007;
         public static final int act_start=0x7f030008;
-        public static final int act_topten=0x7f030009;
-        public static final int act_userinfo=0x7f03000a;
-        public static final int view_favourite_item=0x7f03000b;
-        public static final int view_loading=0x7f03000c;
-        public static final int view_titlebar=0x7f03000d;
-        public static final int view_topten_item=0x7f03000e;
+        public static final int act_subject=0x7f030009;
+        public static final int act_topten=0x7f03000a;
+        public static final int act_userinfo=0x7f03000b;
+        public static final int view_favourite_item=0x7f03000c;
+        public static final int view_loading=0x7f03000d;
+        public static final int view_titlebar=0x7f03000e;
+        public static final int view_topten_item=0x7f03000f;
     }
     public static final class string {
         /**  关于 

@@ -21,7 +21,7 @@ public class RecommendedActivity extends NoTitleActivity implements
 
     private final int DIVIDER_HEIGHT = 6;
 
-    private ListView mToptenList;
+    private ListView mRecommendList;
     private ToptenListAdapter mListAdapter;
     private View mLoadingView;
 
@@ -39,24 +39,15 @@ public class RecommendedActivity extends NoTitleActivity implements
 
     @Override
     protected void findViewsById() {
-        mToptenList = (ListView) findViewById(R.id.recommended_list);
-        mToptenList.setDivider(null);
-        mToptenList.setDividerHeight(DIVIDER_HEIGHT);
+        mRecommendList = (ListView) findViewById(R.id.recommended_list);
+        mRecommendList.setDivider(null);
+        mRecommendList.setDividerHeight(DIVIDER_HEIGHT);
         mLoadingView = findViewById(R.id.loading_view);
-    }
-
-    private void initAdapter() {
-        mListAdapter = new ToptenListAdapter(mContext);
-        mToptenList.setAdapter(mListAdapter);
     }
 
     @Override
     protected void setListeners() {
-        mToptenList.setOnItemClickListener(this);
-    }
-
-    private void getArticles() {
-        new GetArticlesTask(mContext, "recommended", this).execute();
+        mRecommendList.setOnItemClickListener(this);
     }
 
     @Override
@@ -72,11 +63,20 @@ public class RecommendedActivity extends NoTitleActivity implements
         if (null == result) {
             BYRToast.showLongToast(mContext, R.string.fail_get_content);
         } else {
-            mToptenList.setVisibility(View.VISIBLE);
+            mRecommendList.setVisibility(View.VISIBLE);
             mListAdapter.setContent((ArrayList<Article>) result);
             mListAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    private void initAdapter() {
+        mListAdapter = new ToptenListAdapter(mContext);
+        mRecommendList.setAdapter(mListAdapter);
+    }
+
+    private void getArticles() {
+        new GetArticlesTask(mContext, "recommended", this).execute();
     }
 
 }

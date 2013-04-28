@@ -106,15 +106,6 @@ public class LoginActivity extends NoTitleActivity implements
         });
     }
 
-    private void initData() {
-        String u = Utils.getContent(mContext, Utils.KEY_USERNAME);
-        String p = Utils.getContent(mContext, Utils.KEY_PASSWORD);
-        if (!TextUtils.isEmpty(u) && !TextUtils.isEmpty(p)) {
-            mUsername.setText(u);
-            mPassword.setText(p);
-        }
-    }
-
     @Override
     public void onTaskFinished(AbsTask task, final Object result) {
 
@@ -147,6 +138,15 @@ public class LoginActivity extends NoTitleActivity implements
             return;
         }
 
+    }
+
+    private void initData() {
+        String u = Utils.getContent(mContext, Utils.KEY_USERNAME);
+        String p = Utils.getContent(mContext, Utils.KEY_PASSWORD);
+        if (!TextUtils.isEmpty(u) && !TextUtils.isEmpty(p)) {
+            mUsername.setText(u);
+            mPassword.setText(p);
+        }
     }
 
 }

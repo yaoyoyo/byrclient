@@ -1,11 +1,9 @@
 package haitong.yao.byrclient;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.view.KeyEvent;

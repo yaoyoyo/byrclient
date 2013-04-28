@@ -44,18 +44,9 @@ public class ToptenActivity extends NoTitleActivity implements
         mLoadingView = findViewById(R.id.loading_view);
     }
 
-    private void initAdapter() {
-        mListAdapter = new ToptenListAdapter(mContext);
-        mToptenList.setAdapter(mListAdapter);
-    }
-
     @Override
     protected void setListeners() {
         mToptenList.setOnItemClickListener(this);
-    }
-
-    private void getArticles() {
-        new GetArticlesTask(mContext, "topten", this).execute();
     }
 
     @Override
@@ -76,6 +67,15 @@ public class ToptenActivity extends NoTitleActivity implements
             mListAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    private void initAdapter() {
+        mListAdapter = new ToptenListAdapter(mContext);
+        mToptenList.setAdapter(mListAdapter);
+    }
+
+    private void getArticles() {
+        new GetArticlesTask(mContext, "topten", this).execute();
     }
 
 }
