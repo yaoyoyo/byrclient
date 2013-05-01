@@ -180,11 +180,13 @@ public class Subject implements Serializable {
 			subject.setPagination(Pagination.parsePagination(obj
 					.optString("pagination")));
 			JSONArray article = obj.optJSONArray("article");
-			List<Article> articles = new ArrayList<Article>();
-			for (int i = 0; i < article.length(); i++) {
-				articles.add(Article.parseArticle(article.getString(i)));
+			if (null != article && article.length() > 0) {
+				List<Article> articles = new ArrayList<Article>();
+				for (int i = 0; i < article.length(); i++) {
+					articles.add(Article.parseArticle(article.getString(i)));
+				}
+				subject.setArticle(articles);
 			}
-			subject.setArticle(articles);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

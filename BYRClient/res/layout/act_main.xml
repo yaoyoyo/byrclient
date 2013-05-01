@@ -25,7 +25,7 @@
                 android:layout_height="0dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_bg"
+                android:background="@drawable/bg_general_blue"
                 android:gravity="center"
                 android:text="@string/main_topten"
                 android:textColor="@color/white"
@@ -37,7 +37,7 @@
                 android:layout_height="0dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_bg"
+                android:background="@drawable/bg_general_blue"
                 android:gravity="center"
                 android:text="@string/main_focus"
                 android:textColor="@color/white"
@@ -50,7 +50,7 @@
             android:layout_height="fill_parent"
             android:layout_margin="3dp"
             android:layout_weight="2"
-            android:background="@drawable/blue_bg"
+            android:background="@drawable/bg_general_blue"
             android:gravity="center"
             android:text="@string/main_sections"
             android:textColor="@color/white"
@@ -75,7 +75,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_margin="3dp"
-                android:background="@drawable/blue_bg"
+                android:background="@drawable/bg_general_blue"
                 android:gravity="center"
                 android:text="@string/main_recommended"
                 android:textColor="@color/white"
@@ -88,7 +88,7 @@
             android:layout_height="fill_parent"
             android:layout_margin="3dp"
             android:layout_weight="2"
-            android:background="@drawable/blue_bg"
+            android:background="@drawable/bg_general_blue"
             android:gravity="center"
             android:text="@string/main_byr"
             android:textColor="@color/white"
@@ -108,7 +108,7 @@
             android:layout_height="fill_parent"
             android:layout_margin="3dp"
             android:layout_weight="2"
-            android:background="@drawable/blue_bg"
+            android:background="@drawable/bg_general_blue"
             android:gravity="center"
             android:text="@string/main_favoruite"
             android:textColor="@color/white"
@@ -127,23 +127,24 @@
                 android:layout_height="0dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_bg"
+                android:background="@drawable/bg_general_blue"
                 android:gravity="center"
                 android:text="@string/main_user"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
-
+
             <TextView
                 android:id="@+id/main_mailbox"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_bg"
+                android:background="@drawable/bg_general_blue"
                 android:gravity="center"
                 android:text="@string/main_mailbox"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
+
         </LinearLayout>
     </LinearLayout>
 

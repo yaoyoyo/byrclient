@@ -83,17 +83,21 @@ public class Section implements Serializable {
 			section.setIsRoot(obj.optBoolean("is_root"));
 			section.setParent(obj.optString("parent"));
 			JSONArray subSection = obj.optJSONArray("sub_section");
-			List<String> sections = new ArrayList<String>();
-			for (int i = 0; i < subSection.length(); i++) {
-				sections.add(subSection.getString(i));
+			if (null != subSection && subSection.length() > 0) {
+				List<String> sections = new ArrayList<String>();
+				for (int i = 0; i < subSection.length(); i++) {
+					sections.add(subSection.getString(i));
+				}
+				section.setSubSection(sections);
 			}
-			section.setSubSection(sections);
 			JSONArray board = obj.optJSONArray("board");
-			List<Board> boards = new ArrayList<Board>();
-			for (int i = 0; i < board.length(); i++) {
-				boards.add(Board.parseBoard(board.getString(i)));
+			if (null != board && board.length() > 0) {
+				List<Board> boards = new ArrayList<Board>();
+				for (int i = 0; i < board.length(); i++) {
+					boards.add(Board.parseBoard(board.getString(i)));
+				}
+				section.setBoard(boards);
 			}
-			section.setBoard(boards);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
