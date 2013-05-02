@@ -7,7 +7,7 @@
         android:id="@+id/favourite_item_name"
         android:layout_width="fill_parent"
         android:layout_height="160dp"
-        android:background="@color/bg_blue_light"
+        android:background="@drawable/bg_general_blue"
         android:gravity="center"
         android:maxLines="2"
         android:textColor="@color/white"

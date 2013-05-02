@@ -17,87 +17,87 @@ import android.widget.TextView;
 
 public class ToptenListAdapter extends BaseAdapter {
 
-    private List<Article> mArticles = new ArrayList<Article>();
+	private List<Article> mArticles = new ArrayList<Article>();
 
-    private LayoutInflater mInflater;
+	private LayoutInflater mInflater;
 
-    public ToptenListAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
-    }
+	public ToptenListAdapter(Context context) {
+		mInflater = LayoutInflater.from(context);
+	}
 
-    public void setContent(ArrayList<Article> articles) {
-        mArticles = articles;
-    }
+	public void setContent(ArrayList<Article> articles) {
+		mArticles = articles;
+	}
 
-    @Override
-    public int getCount() {
-        if (null == mArticles) {
-            return 0;
-        }
-        return mArticles.size();
-    }
+	@Override
+	public int getCount() {
+		if (null == mArticles) {
+			return 0;
+		}
+		return mArticles.size();
+	}
 
-    @Override
-    public Article getItem(int position) {
-        if (null == mArticles || getCount() == 0 || position > mArticles.size()) {
-            return null;
-        }
-        return mArticles.get(position);
-    }
+	@Override
+	public Article getItem(int position) {
+		if (null == mArticles || getCount() == 0 || position > mArticles.size()) {
+			return null;
+		}
+		return mArticles.get(position);
+	}
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (null == getItem(position)) {
-            return null;
-        }
+		if (null == getItem(position)) {
+			return null;
+		}
 
-        Article article = getItem(position);
-        ViewHolder viewHolder = null;
-        if (null == convertView || null == convertView.getTag()) {
-            convertView = mInflater.inflate(R.layout.view_topten_item, null);
-            viewHolder = new ViewHolder();
-            viewHolder.title = (TextView) convertView
-                    .findViewById(R.id.topten_item_title);
-            viewHolder.board = (TextView) convertView
-                    .findViewById(R.id.topten_item_board);
-            viewHolder.hasAttachment = (ImageView) convertView
-                    .findViewById(R.id.topten_item_has_attachment);
-            convertView.setTag(viewHolder);
-        }
+		Article article = getItem(position);
+		ViewHolder viewHolder = null;
+		if (null == convertView || null == convertView.getTag()) {
+			convertView = mInflater.inflate(R.layout.view_article_item, null);
+			viewHolder = new ViewHolder();
+			viewHolder.title = (TextView) convertView
+					.findViewById(R.id.topten_item_title);
+			viewHolder.board = (TextView) convertView
+					.findViewById(R.id.topten_item_board);
+			viewHolder.hasAttachment = (ImageView) convertView
+					.findViewById(R.id.topten_item_has_attachment);
+			convertView.setTag(viewHolder);
+		}
 
-        viewHolder = (ViewHolder) convertView.getTag();
-        try {
-            viewHolder.title.setText(article.getTitle());
-            viewHolder.board.setText("From: " + article.getBoardName());
-            if (article.getHasAttachment()) {
-                viewHolder.hasAttachment.setVisibility(View.VISIBLE);
-            } else {
-                viewHolder.hasAttachment.setVisibility(View.GONE);
-            }
-            if (ReadItems.isArticleRead(article.getId())) {
-                viewHolder.title.setTextColor(0xFFFFFFFF);
-                viewHolder.board.setTextColor(0xFFFFFFFF);
-            } else {
-                viewHolder.title.setTextColor(0xFFDDDDDD);
-                viewHolder.board.setTextColor(0xFFDDDDDD);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return convertView;
-    }
+		viewHolder = (ViewHolder) convertView.getTag();
+		try {
+			viewHolder.title.setText(article.getTitle());
+			viewHolder.board.setText("From: " + article.getBoardName());
+			if (article.getHasAttachment()) {
+				viewHolder.hasAttachment.setVisibility(View.VISIBLE);
+			} else {
+				viewHolder.hasAttachment.setVisibility(View.GONE);
+			}
+			if (ReadItems.isArticleRead(article.getId())) {
+				viewHolder.title.setTextColor(0xFFFFFFFF);
+				viewHolder.board.setTextColor(0xFFFFFFFF);
+			} else {
+				viewHolder.title.setTextColor(0xFFDDDDDD);
+				viewHolder.board.setTextColor(0xFFDDDDDD);
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return convertView;
+	}
 
-    private class ViewHolder {
+	private class ViewHolder {
 
-        TextView title;
-        TextView board;
-        ImageView hasAttachment;
-    }
+		TextView title;
+		TextView board;
+		ImageView hasAttachment;
+	}
 
 }
