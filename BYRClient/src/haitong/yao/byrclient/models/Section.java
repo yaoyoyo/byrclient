@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
+
 /**
  * 元数据 分区
  * 
@@ -74,6 +76,9 @@ public class Section implements Serializable {
 	}
 
 	public static Section parseSection(String json) {
+		if (TextUtils.isEmpty(json)) {
+			return null;
+		}
 		Section section = new Section();
 		JSONObject obj;
 		try {

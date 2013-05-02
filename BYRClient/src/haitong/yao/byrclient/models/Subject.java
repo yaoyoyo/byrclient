@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
+
 public class Subject implements Serializable {
 
 	private static final long serialVersionUID = -3466271850919985920L;
@@ -158,6 +160,9 @@ public class Subject implements Serializable {
 	}
 
 	public static Subject parseArticle(String json) {
+		if (TextUtils.isEmpty(json)) {
+			return null;
+		}
 		Subject subject = new Subject();
 		JSONObject obj;
 		try {

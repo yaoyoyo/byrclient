@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
+
 public class Board implements Serializable {
 
 	private static final long serialVersionUID = 5912490810761133010L;
@@ -177,6 +179,9 @@ public class Board implements Serializable {
 	}
 
 	public static Board parseBoard(String json) {
+		if (TextUtils.isEmpty(json)) {
+			return null;
+		}
 		Board board = new Board();
 		JSONObject obj;
 		try {
