@@ -6,35 +6,35 @@ import android.os.AsyncTask;
 
 public class GetFavouriteTask extends AbsTask {
 
-    private int mLevel;
+	private int mLevel;
 
-    public GetFavouriteTask(Context context, int level,
-            ITaskFinishListener listener) {
-        mContext = context;
-        mLevel = level;
-        mListener = listener;
-    }
+	public GetFavouriteTask(Context context, int level,
+			ITaskFinishListener listener) {
+		mContext = context;
+		mLevel = level;
+		mListener = listener;
+	}
 
-    @Override
-    public void execute() {
-        new GetFavourite().execute(mLevel);
-    }
+	@Override
+	public void execute() {
+		new GetFavourite().execute(mLevel);
+	}
 
-    private class GetFavourite extends AsyncTask<Integer, Object, Object> {
+	private class GetFavourite extends AsyncTask<Integer, Object, Object> {
 
-        @Override
-        protected Object doInBackground(Integer... params) {
-            return NetUtil.getFavourites(mContext, params[0]);
-        }
+		@Override
+		protected Object doInBackground(Integer... params) {
+			return NetUtil.getFavourites(mContext, mLevel);
+		}
 
-        @Override
-        protected void onPostExecute(Object result) {
-            super.onPostExecute(result);
-            if (null != mListener) {
-                mListener.onTaskFinished(GetFavouriteTask.this, result);
-            }
-        }
+		@Override
+		protected void onPostExecute(Object result) {
+			super.onPostExecute(result);
+			if (null != mListener) {
+				mListener.onTaskFinished(GetFavouriteTask.this, result);
+			}
+		}
 
-    }
+	}
 
 }

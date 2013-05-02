@@ -30,6 +30,8 @@ public class Board implements Serializable {
 	private Pagination pagination;
 	private List<Article> article;
 
+	private boolean isSubSection = false;// 是否为子分区，默认为false
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -164,6 +166,14 @@ public class Board implements Serializable {
 
 	public void setArticle(List<Article> article) {
 		this.article = article;
+	}
+
+	public boolean isSubSection() {
+		return isSubSection;
+	}
+
+	public void setIsSubSection(boolean isSubSection) {
+		this.isSubSection = isSubSection;
 	}
 
 	public static Board parseBoard(String json) {

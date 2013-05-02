@@ -24,19 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="haitong.yao.byrclient.LoginActivity" >
-        </activity>
         <activity
             android:name="haitong.yao.byrclient.MainActivity"
             android:launchMode="singleTask" />
         <activity android:name="haitong.yao.byrclient.AboutActivity" />
-        <activity android:name="haitong.yao.byrclient.MailboxActivity" />
+        <activity android:name="haitong.yao.byrclient.BoardActivity" />
+        <activity android:name="haitong.yao.byrclient.FavouriteActivity" />
         <activity android:name="haitong.yao.byrclient.FocusActivity" />
+        <activity android:name="haitong.yao.byrclient.LoginActivity" />
+        <activity android:name="haitong.yao.byrclient.MailboxActivity" />
         <activity android:name="haitong.yao.byrclient.RecommendedActivity" />
         <activity android:name="haitong.yao.byrclient.SectionsActivity" />
+        <activity android:name="haitong.yao.byrclient.SubSectionActivity" />
         <activity android:name="haitong.yao.byrclient.ToptenActivity" />
         <activity android:name="haitong.yao.byrclient.UserInfoActivity" />
-        <activity android:name="haitong.yao.byrclient.FavouriteActivity" />
     </application>
 
 </manifest>

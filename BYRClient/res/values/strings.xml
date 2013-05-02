@@ -43,6 +43,17 @@
     <string name="sections_entertainment">休闲娱乐</string>
     <string name="sections_sports">体育\n健身</string>
     <string name="sections_game">游戏\n对战</string>
+    <string name="sections_court">投诉</string>
+    <string name="sections_cn_bbs">转信</string>
+    <string name="sections_bbslog">论坛数据统计及日志</string>
+    <string name="sections_bm_affair">版主事务区</string>
+    <string name="sections_board">版面事务区</string>
+    <string name="sections_byr_team">北邮人团队</string>
+    <string name="sections_school">院系校区</string>
+    <string name="sections_association">社团组织</string>
+    <string name="sections_advertise">广告乐园</string>
+    <string name="sections_china">家乡</string>
+    <string name="sections_onlinegames">网络游戏</string>
 
     <!-- 提醒 -->
     <string name="notification_loading">努力加载中...</string>

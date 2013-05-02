@@ -6,35 +6,35 @@ import android.os.AsyncTask;
 
 public class GetMailsTask extends AbsTask {
 
-    private String mType;
+	private String mType;
 
-    public GetMailsTask(Context context, String type,
-            ITaskFinishListener listener) {
-        mContext = context;
-        mType = type;
-        mListener = listener;
-    }
+	public GetMailsTask(Context context, String type,
+			ITaskFinishListener listener) {
+		mContext = context;
+		mType = type;
+		mListener = listener;
+	}
 
-    @Override
-    public void execute() {
-        new GetMails().execute(mType);
-    }
+	@Override
+	public void execute() {
+		new GetMails().execute(mType);
+	}
 
-    private class GetMails extends AsyncTask<String, Object, Object> {
+	private class GetMails extends AsyncTask<String, Object, Object> {
 
-        @Override
-        protected Object doInBackground(String... params) {
-            return NetUtil.getMails(mContext, params[0]);
-        }
+		@Override
+		protected Object doInBackground(String... params) {
+			return NetUtil.getMails(mContext, mType);
+		}
 
-        @Override
-        protected void onPostExecute(Object result) {
-            super.onPostExecute(result);
-            if (null != mListener) {
-                mListener.onTaskFinished(GetMailsTask.this, result);
-            }
-        }
+		@Override
+		protected void onPostExecute(Object result) {
+			super.onPostExecute(result);
+			if (null != mListener) {
+				mListener.onTaskFinished(GetMailsTask.this, result);
+			}
+		}
 
-    }
+	}
 
 }
