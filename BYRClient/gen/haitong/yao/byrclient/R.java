@@ -11,11 +11,22 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        /**  背景色 
+         */
+        public static final int bg_blue_dark=0x7f040008;
+        public static final int bg_blue_light=0x7f040009;
         public static final int black=0x7f040006;
         public static final int dark_blue=0x7f040001;
         public static final int gray_button=0x7f040003;
         public static final int gray_text=0x7f040004;
         public static final int light_blue=0x7f040002;
+        /**  列表工具条分割线 
+         */
+        public static final int list_function_divider=0x7f04000c;
+        /**  文字颜色 
+         */
+        public static final int text_orange=0x7f04000a;
+        public static final int text_white=0x7f04000b;
         public static final int transparent=0x7f040000;
         public static final int white=0x7f040005;
         public static final int yellow=0x7f040007;
@@ -26,11 +37,11 @@ public final class R {
     public static final class drawable {
         public static final int about_07106=0x7f020000;
         public static final int about_423=0x7f020001;
-        public static final int blue_bg=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int icon_attachment=0x7f020004;
-        public static final int icon_home=0x7f020005;
-        public static final int icon_shuai=0x7f020006;
+        public static final int bg_general_blue=0x7f020002;
+        public static final int bg_list_bar=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon_attachment=0x7f020005;
+        public static final int icon_loading_bar_shuai=0x7f020006;
         public static final int login_et=0x7f020007;
         public static final int login_et_bg=0x7f020008;
         public static final int start_logo=0x7f020009;
@@ -41,113 +52,142 @@ public final class R {
         public static final int about_07106=0x7f080000;
         public static final int about_423=0x7f080001;
         public static final int about_to=0x7f080002;
-        public static final int favourite_gv=0x7f080003;
-        public static final int favourite_item_name=0x7f08002a;
-        public static final int focus_list=0x7f080005;
-        public static final int loading_view=0x7f080004;
-        public static final int login_clear=0x7f08000a;
-        public static final int login_login=0x7f080009;
-        public static final int login_password=0x7f080008;
-        public static final int login_register=0x7f08000b;
-        public static final int login_title=0x7f080006;
-        public static final int login_username=0x7f080007;
-        public static final int mailbox_home=0x7f08000c;
-        public static final int mailbox_list=0x7f08000d;
-        public static final int main_byr=0x7f080012;
-        public static final int main_favourite=0x7f080013;
-        public static final int main_hot=0x7f08000f;
-        public static final int main_mailbox=0x7f080015;
-        public static final int main_recommended=0x7f080011;
-        public static final int main_sections=0x7f080010;
-        public static final int main_topten=0x7f08000e;
-        public static final int main_user=0x7f080014;
-        public static final int recommended_list=0x7f080016;
-        public static final int sections_art=0x7f08001c;
-        public static final int sections_bbs_staff=0x7f080017;
-        public static final int sections_campus=0x7f080019;
-        public static final int sections_entertament=0x7f08001d;
-        public static final int sections_game=0x7f08001f;
-        public static final int sections_information=0x7f08001a;
-        public static final int sections_life=0x7f08001b;
-        public static final int sections_sports=0x7f08001e;
-        public static final int sections_tech=0x7f080018;
-        public static final int start_logo=0x7f080020;
-        public static final int subject_list=0x7f080021;
-        public static final int title_left=0x7f08002b;
-        public static final int title_middle=0x7f08002c;
-        public static final int title_right=0x7f08002d;
-        public static final int topten_item_board=0x7f08002f;
-        public static final int topten_item_has_attachment=0x7f080030;
-        public static final int topten_item_title=0x7f08002e;
-        public static final int topten_list=0x7f080022;
-        public static final int userinfo_gender=0x7f080025;
-        public static final int userinfo_login_count=0x7f080028;
-        public static final int userinfo_login_info=0x7f080029;
-        public static final int userinfo_name=0x7f080023;
-        public static final int userinfo_portrait=0x7f080024;
-        public static final int userinfo_post_count=0x7f080027;
-        public static final int userinfo_sign=0x7f080026;
+        public static final int board_list=0x7f080003;
+        public static final int favourite_gv=0x7f080006;
+        public static final int favourite_item_name=0x7f080030;
+        public static final int focus_list=0x7f080007;
+        public static final int list_function_bar=0x7f080004;
+        public static final int list_function_bar_goto=0x7f080033;
+        public static final int list_function_bar_home=0x7f080031;
+        public static final int list_function_bar_next_page=0x7f080035;
+        public static final int list_function_bar_page=0x7f080034;
+        public static final int list_function_bar_refresh=0x7f080032;
+        public static final int loading_view=0x7f080005;
+        public static final int login_clear=0x7f08000c;
+        public static final int login_login=0x7f08000b;
+        public static final int login_password=0x7f08000a;
+        public static final int login_register=0x7f08000d;
+        public static final int login_title=0x7f080008;
+        public static final int login_username=0x7f080009;
+        public static final int mailbox_home=0x7f08000f;
+        public static final int mailbox_list=0x7f08000e;
+        public static final int main_byr=0x7f080014;
+        public static final int main_favourite=0x7f080015;
+        public static final int main_hot=0x7f080011;
+        public static final int main_mailbox=0x7f080017;
+        public static final int main_recommended=0x7f080013;
+        public static final int main_sections=0x7f080012;
+        public static final int main_topten=0x7f080010;
+        public static final int main_user=0x7f080016;
+        public static final int recommended_list=0x7f080018;
+        public static final int sections_art=0x7f08001e;
+        public static final int sections_bbs_staff=0x7f080019;
+        public static final int sections_campus=0x7f08001b;
+        public static final int sections_entertament=0x7f08001f;
+        public static final int sections_game=0x7f080021;
+        public static final int sections_information=0x7f08001c;
+        public static final int sections_life=0x7f08001d;
+        public static final int sections_sports=0x7f080020;
+        public static final int sections_tech=0x7f08001a;
+        public static final int start_logo=0x7f080022;
+        public static final int subject_list=0x7f080023;
+        public static final int subsection_gv=0x7f080024;
+        public static final int topten_item_board=0x7f08002e;
+        public static final int topten_item_has_attachment=0x7f08002f;
+        public static final int topten_item_title=0x7f08002d;
+        public static final int topten_list=0x7f080025;
+        public static final int userinfo_gender=0x7f080028;
+        public static final int userinfo_login_count=0x7f08002b;
+        public static final int userinfo_login_info=0x7f08002c;
+        public static final int userinfo_name=0x7f080026;
+        public static final int userinfo_portrait=0x7f080027;
+        public static final int userinfo_post_count=0x7f08002a;
+        public static final int userinfo_sign=0x7f080029;
     }
     public static final class layout {
         public static final int act_about=0x7f030000;
-        public static final int act_favourite=0x7f030001;
-        public static final int act_focus=0x7f030002;
-        public static final int act_login=0x7f030003;
-        public static final int act_mailbox=0x7f030004;
-        public static final int act_main=0x7f030005;
-        public static final int act_recommended=0x7f030006;
-        public static final int act_sections=0x7f030007;
-        public static final int act_start=0x7f030008;
-        public static final int act_subject=0x7f030009;
-        public static final int act_topten=0x7f03000a;
-        public static final int act_userinfo=0x7f03000b;
-        public static final int view_favourite_item=0x7f03000c;
-        public static final int view_loading=0x7f03000d;
-        public static final int view_titlebar=0x7f03000e;
-        public static final int view_topten_item=0x7f03000f;
+        public static final int act_board=0x7f030001;
+        public static final int act_favourite=0x7f030002;
+        public static final int act_focus=0x7f030003;
+        public static final int act_login=0x7f030004;
+        public static final int act_mailbox=0x7f030005;
+        public static final int act_main=0x7f030006;
+        public static final int act_recommended=0x7f030007;
+        public static final int act_sections=0x7f030008;
+        public static final int act_start=0x7f030009;
+        public static final int act_subject=0x7f03000a;
+        public static final int act_subsection=0x7f03000b;
+        public static final int act_topten=0x7f03000c;
+        public static final int act_userinfo=0x7f03000d;
+        public static final int view_article_item=0x7f03000e;
+        public static final int view_favourite_item=0x7f03000f;
+        public static final int view_list_function_bar=0x7f030010;
+        public static final int view_loading=0x7f030011;
     }
     public static final class string {
         /**  关于 
          */
-        public static final int about_todear=0x7f060016;
+        public static final int about_todear=0x7f06001c;
         public static final int app_name=0x7f060000;
         public static final int app_title=0x7f060001;
         public static final int error_network=0x7f060004;
         public static final int fail_get_content=0x7f060005;
-        public static final int login_clear=0x7f060009;
-        public static final int login_login=0x7f060008;
-        public static final int login_register=0x7f06000a;
+        public static final int fail_get_pagination=0x7f060006;
+        public static final int list_function_bar_goto=0x7f060033;
+        /**  列表工具条 
+         */
+        public static final int list_function_bar_home=0x7f060031;
+        public static final int list_function_bar_next_page=0x7f060034;
+        public static final int list_function_bar_refresh=0x7f060032;
+        public static final int login_clear=0x7f06000f;
+        public static final int login_login=0x7f06000e;
+        public static final int login_register=0x7f060010;
         /**  登录 
          */
-        public static final int login_user_name=0x7f060006;
-        public static final int login_user_password=0x7f060007;
+        public static final int login_user_name=0x7f06000c;
+        public static final int login_user_password=0x7f06000d;
         /**  主页 
          */
-        public static final int main_byr=0x7f06000b;
-        public static final int main_cancel=0x7f060015;
-        public static final int main_favoruite=0x7f06000f;
-        public static final int main_focus=0x7f06000d;
-        public static final int main_mailbox=0x7f060012;
-        public static final int main_ok=0x7f060014;
-        public static final int main_recommended=0x7f06000e;
-        public static final int main_sections=0x7f060010;
-        public static final int main_sure_exit=0x7f060013;
-        public static final int main_topten=0x7f06000c;
-        public static final int main_user=0x7f060011;
+        public static final int main_byr=0x7f060011;
+        public static final int main_cancel=0x7f06001b;
+        public static final int main_favoruite=0x7f060015;
+        public static final int main_focus=0x7f060013;
+        public static final int main_mailbox=0x7f060018;
+        public static final int main_ok=0x7f06001a;
+        public static final int main_recommended=0x7f060014;
+        public static final int main_sections=0x7f060016;
+        public static final int main_sure_exit=0x7f060019;
+        public static final int main_topten=0x7f060012;
+        public static final int main_user=0x7f060017;
+        public static final int notification_empty_page=0x7f060009;
+        public static final int notification_last_page=0x7f060008;
         /**  提醒 
          */
-        public static final int notification_loading=0x7f060020;
-        public static final int sections_art=0x7f06001b;
+        public static final int notification_loading=0x7f060007;
+        public static final int notification_page_below_zero=0x7f06000b;
+        public static final int notification_page_out_range=0x7f06000a;
+        public static final int sections_advertise=0x7f06002e;
+        public static final int sections_art=0x7f060021;
+        public static final int sections_association=0x7f06002d;
         /**  分区 
          */
-        public static final int sections_bbs_staff=0x7f060017;
-        public static final int sections_campus=0x7f060018;
-        public static final int sections_entertainment=0x7f06001d;
-        public static final int sections_game=0x7f06001f;
-        public static final int sections_information=0x7f06001a;
-        public static final int sections_life=0x7f06001c;
-        public static final int sections_sports=0x7f06001e;
-        public static final int sections_tech=0x7f060019;
+        public static final int sections_bbs_staff=0x7f06001d;
+        public static final int sections_bbslog=0x7f060028;
+        public static final int sections_bm_affair=0x7f060029;
+        public static final int sections_board=0x7f06002a;
+        public static final int sections_byr_team=0x7f06002b;
+        public static final int sections_campus=0x7f06001e;
+        public static final int sections_china=0x7f06002f;
+        public static final int sections_cn_bbs=0x7f060027;
+        public static final int sections_court=0x7f060026;
+        public static final int sections_entertainment=0x7f060023;
+        public static final int sections_game=0x7f060025;
+        public static final int sections_information=0x7f060020;
+        public static final int sections_life=0x7f060022;
+        public static final int sections_onlinegames=0x7f060030;
+        public static final int sections_school=0x7f06002c;
+        public static final int sections_sports=0x7f060024;
+        public static final int sections_tech=0x7f06001f;
         public static final int warning_empty_password=0x7f060003;
         /**  异常 
          */

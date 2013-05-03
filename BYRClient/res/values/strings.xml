@@ -9,6 +9,13 @@
     <string name="warning_empty_password">密码不能为空</string>
     <string name="error_network">连接错误，请检查您的网络</string>
     <string name="fail_get_content">获取内容失败，请稍后再试</string>
+    <string name="fail_get_pagination">获取分页内容失败</string>
+    <!-- 提醒 -->
+    <string name="notification_loading">努力加载中...</string>
+    <string name="notification_last_page">已经是最后一页了</string>
+    <string name="notification_empty_page">输入页码为空</string>
+    <string name="notification_page_out_range">已超过最大页数</string>
+    <string name="notification_page_below_zero">输入页数必须大于0</string>
 
     <!-- 登录 -->
     <string name="login_user_name">用户名</string>
@@ -55,8 +62,10 @@
     <string name="sections_china">家乡</string>
     <string name="sections_onlinegames">网络游戏</string>
 
-    <!-- 提醒 -->
-    <string name="notification_loading">努力加载中...</string>
-    <string name="notification_last_page">已经是最后一页了</string>
+    <!-- 列表工具条 -->
+    <string name="list_function_bar_home">主页</string>
+    <string name="list_function_bar_refresh">刷新</string>
+    <string name="list_function_bar_goto">GO</string>
+    <string name="list_function_bar_next_page">下一页</string>
 
 </resources>

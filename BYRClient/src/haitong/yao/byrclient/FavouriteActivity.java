@@ -1,6 +1,7 @@
 package haitong.yao.byrclient;
 
 import haitong.yao.byrclient.adapters.BoardListAdapter;
+import haitong.yao.byrclient.constant.IntentExtras;
 import haitong.yao.byrclient.models.Board;
 import haitong.yao.byrclient.tasks.AbsTask;
 import haitong.yao.byrclient.tasks.GetFavouriteTask;
@@ -10,7 +11,9 @@ import haitong.yao.byrclient.utils.BYRToast;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -51,7 +54,14 @@ public class FavouriteActivity extends NoTitleActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-
+		Board board = mListAdapter.getItem(position);
+		if (null == board || TextUtils.isEmpty(board.getName())) {
+			return;
+		}
+		Intent intent = new Intent();
+		intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
+		intent.setClass(FavouriteActivity.this, BoardActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 /**
  * 元数据 分页
@@ -59,7 +58,6 @@ public class Pagination implements Serializable {
 		if (TextUtils.isEmpty(json)) {
 			return null;
 		}
-		Log.e("haitong", "json: " + json);
 		Pagination pagination = new Pagination();
 		JSONObject obj;
 		try {

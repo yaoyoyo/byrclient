@@ -411,4 +411,34 @@ public class NetUtil {
 		return section;
 	}
 
+	/**
+	 * 获取分区版面帖子列表接口
+	 * 
+	 * @param name
+	 *            版面名称
+	 * @return
+	 */
+	public static Board getBoard(Context context, String name, int page) {
+		Board board = new Board();
+		String url = Api.BYR_API + Api.BOARD_NAME + name + ENCODE_TYPE_JSON
+				+ "?appkey=" + APP_KEY + "&page=" + page;
+		HttpURLConnection connection = getHttpGetConnection(url, GET_METHOD,
+				false);
+		if (null == connection) {
+			return null;
+		}
+		String token = Utils.getContent(context, Utils.KEY_USER_TOKEN);
+		connection.setRequestProperty("Authorization", "Basic " + token);
+
+		String result;
+		try {
+			result = getStrFromStream(connection.getInputStream());
+			board = Board.parseBoard(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return board;
+	}
+
 }
