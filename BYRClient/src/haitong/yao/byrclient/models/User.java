@@ -221,6 +221,10 @@ public class User implements Serializable {
 			return null;
 		}
 		User u = new User();
+		if (!json.startsWith("{\"")) {
+			u.setId(json);
+			return u;
+		}
 		JSONObject obj;
 		try {
 			obj = new JSONObject(json);

@@ -2,13 +2,16 @@ package haitong.yao.byrclient;
 
 import haitong.yao.byrclient.adapters.BoardListAdapter;
 import haitong.yao.byrclient.constant.IntentExtras;
+import haitong.yao.byrclient.models.Board;
 import haitong.yao.byrclient.models.Section;
 import haitong.yao.byrclient.tasks.AbsTask;
 import haitong.yao.byrclient.tasks.GetSubSectionTask;
 import haitong.yao.byrclient.tasks.ITaskFinishListener;
 import haitong.yao.byrclient.utils.BYRToast;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -70,7 +73,19 @@ public class SubSectionActivity extends NoTitleActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-
+		Board board = mListAdapter.getItem(position);
+		if (null == board || TextUtils.isEmpty(board.getName())) {
+			return;
+		}
+		Intent intent = new Intent();
+		if (board.isSubSection()) {
+			intent.putExtra(IntentExtras.SECTION_NAME, board.getName());
+			intent.setClass(SubSectionActivity.this, SubSectionActivity.class);
+		} else {
+			intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
+			intent.setClass(SubSectionActivity.this, BoardActivity.class);
+		}
+		startActivity(intent);
 	}
 
 	@Override
