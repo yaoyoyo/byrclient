@@ -16,7 +16,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:scaleType="centerInside"
-            android:src="@drawable/icon_shuai" />
+            android:src="@drawable/icon_loading_bar_shuai" />
 
         <TextView
             android:layout_width="0dp"

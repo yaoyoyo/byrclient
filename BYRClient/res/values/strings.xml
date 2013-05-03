@@ -57,5 +57,6 @@
 
     <!-- 提醒 -->
     <string name="notification_loading">努力加载中...</string>
+    <string name="notification_last_page">已经是最后一页了</string>
 
 </resources>

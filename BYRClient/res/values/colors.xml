@@ -15,5 +15,7 @@
     <!-- 文字颜色 -->
     <color name="text_orange">#EC7615</color>
     <color name="text_white">#C4E2E4</color>
+    <!-- 列表工具条分割线 -->
+    <color name="list_function_divider">#2A6696</color>
 
 </resources>

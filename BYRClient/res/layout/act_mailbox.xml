@@ -3,15 +3,6 @@
     android:layout_height="fill_parent"
     android:background="#EEEEEE" >
 
-    <ImageView
-        android:id="@+id/mailbox_home"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/default_titlebar_height"
-        android:background="@drawable/bg_general_blue"
-        android:scaleType="centerInside"
-        android:src="@drawable/icon_home"
-        android:visibility="gone" />
-
     <ListView
         android:id="@+id/mailbox_list"
         android:layout_width="fill_parent"
