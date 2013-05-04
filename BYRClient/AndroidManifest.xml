@@ -35,6 +35,7 @@
         <activity android:name="haitong.yao.byrclient.MailboxActivity" />
         <activity android:name="haitong.yao.byrclient.RecommendedActivity" />
         <activity android:name="haitong.yao.byrclient.SectionsActivity" />
+        <activity android:name="haitong.yao.byrclient.SubjectActivity" />
         <activity android:name="haitong.yao.byrclient.SubSectionActivity" />
         <activity android:name="haitong.yao.byrclient.ToptenActivity" />
         <activity android:name="haitong.yao.byrclient.UserInfoActivity" />

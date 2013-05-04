@@ -7,11 +7,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 public final class ListFunctionBar extends FrameLayout implements
 		OnClickListener {
 
 	private ListBarClickListener mClickListener;
+
+	@Override
+	public void onClick(View v) {
+		int id = v.getId();
+		switch (id) {
+		case R.id.list_function_bar_home:
+			mClickListener.home();
+			break;
+		case R.id.list_function_bar_refresh:
+			mClickListener.refresh();
+			break;
+		case R.id.list_function_bar_goto:
+			mClickListener.turnto();
+			break;
+		case R.id.list_function_bar_next_page:
+			mClickListener.next();
+			break;
+		default:
+			break;
+		}
+
+	};
 
 	public ListFunctionBar(Context context) {
 		super(context);
@@ -36,27 +59,9 @@ public final class ListFunctionBar extends FrameLayout implements
 		mClickListener = listener;
 	}
 
-	@Override
-	public void onClick(View v) {
-		int id = v.getId();
-		switch (id) {
-		case R.id.list_function_bar_home:
-			mClickListener.home();
-			break;
-		case R.id.list_function_bar_refresh:
-			mClickListener.refresh();
-			break;
-		case R.id.list_function_bar_goto:
-			mClickListener.turnto();
-			break;
-		case R.id.list_function_bar_next_page:
-			mClickListener.next();
-			break;
-		default:
-			break;
-		}
-
-	};
+	public void setRefreshText(String text) {
+		((TextView) findViewById(R.id.list_function_bar_refresh)).setText(text);
+	}
 
 	public interface ListBarClickListener {
 

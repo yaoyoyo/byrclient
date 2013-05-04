@@ -14,7 +14,9 @@
     <color name="bg_blue_light">#548CB1</color>
     <!-- 文字颜色 -->
     <color name="text_orange">#EC7615</color>
+    <color name="text_blue">#3E6FB1</color>
     <color name="text_white">#C4E2E4</color>
+    <color name="text_green">#93C763</color>
     <!-- 列表工具条分割线 -->
     <color name="list_function_divider">#2A6696</color>
 

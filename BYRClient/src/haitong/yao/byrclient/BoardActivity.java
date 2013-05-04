@@ -20,8 +20,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class BoardActivity extends NoTitleActivity implements
@@ -93,7 +93,7 @@ public class BoardActivity extends NoTitleActivity implements
 			return;
 		}
 		if (null != mPagination) {
-			int totalPage = mPagination.getItemAllCount();
+			int totalPage = mPagination.getPageAllCount();
 			if (Integer.valueOf(page) > totalPage) {
 				BYRToast.showShortToast(mContext,
 						R.string.notification_page_out_range);
@@ -116,7 +116,7 @@ public class BoardActivity extends NoTitleActivity implements
 	@Override
 	public void next() {
 		if (null != mPagination) {
-			int totalPage = mPagination.getItemAllCount();
+			int totalPage = mPagination.getPageAllCount();
 			if (mCurrentPage == totalPage) {
 				BYRToast.showShortToast(mContext,
 						R.string.notification_last_page);
@@ -137,7 +137,15 @@ public class BoardActivity extends NoTitleActivity implements
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
+		Article article = mListAdapter.getItem(arg2);
+		if (null == article) {
+			return;
+		}
+		Intent intent = new Intent();
+		intent.putExtra(IntentExtras.BOARD_NAME, mBoardName);
+		intent.putExtra(IntentExtras.SUBJECT_ID, article.getId());
+		intent.setClass(BoardActivity.this, SubjectActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

@@ -67,5 +67,6 @@
     <string name="list_function_bar_refresh">刷新</string>
     <string name="list_function_bar_goto">GO</string>
     <string name="list_function_bar_next_page">下一页</string>
+    <string name="list_function_bar_thread">回复</string>
 
 </resources>

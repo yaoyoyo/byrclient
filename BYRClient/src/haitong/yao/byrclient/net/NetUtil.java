@@ -6,6 +6,7 @@ import haitong.yao.byrclient.models.Board;
 import haitong.yao.byrclient.models.Mail;
 import haitong.yao.byrclient.models.RequestError;
 import haitong.yao.byrclient.models.Section;
+import haitong.yao.byrclient.models.Subject;
 import haitong.yao.byrclient.models.User;
 import haitong.yao.byrclient.utils.Base64;
 import haitong.yao.byrclient.utils.Utils;
@@ -400,9 +401,8 @@ public class NetUtil {
 		String token = Utils.getContent(context, Utils.KEY_USER_TOKEN);
 		connection.setRequestProperty("Authorization", "Basic " + token);
 
-		String result;
 		try {
-			result = getStrFromStream(connection.getInputStream());
+			String result = getStrFromStream(connection.getInputStream());
 			section = Section.parseSection(result);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -430,15 +430,37 @@ public class NetUtil {
 		String token = Utils.getContent(context, Utils.KEY_USER_TOKEN);
 		connection.setRequestProperty("Authorization", "Basic " + token);
 
-		String result;
 		try {
-			result = getStrFromStream(connection.getInputStream());
+			String result = getStrFromStream(connection.getInputStream());
 			board = Board.parseBoard(result);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		return board;
+	}
+
+	public static Subject getSubject(Context context, String name, int id,
+			int page) {
+		Subject subject = new Subject();
+		String url = Api.BYR_API + Api.THREAD_INFO + name + "/" + id
+				+ ENCODE_TYPE_JSON + "?appkey=" + APP_KEY + "&page=" + page;
+		HttpURLConnection connection = getHttpGetConnection(url, GET_METHOD,
+				false);
+		if (null == connection) {
+			return null;
+		}
+		String token = Utils.getContent(context, Utils.KEY_USER_TOKEN);
+		connection.setRequestProperty("Authorization", "Basic " + token);
+
+		try {
+			String result = getStrFromStream(connection.getInputStream());
+			subject = Subject.parseArticle(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return subject;
 	}
 
 }

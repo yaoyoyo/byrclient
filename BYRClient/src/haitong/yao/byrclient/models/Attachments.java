@@ -55,15 +55,17 @@ public class Attachments implements Serializable {
 		try {
 			obj = new JSONObject(json);
 			JSONArray tempArray = obj.optJSONArray("array");
-			int size = tempArray.length();
-			SingleAttachment[] tempAttachment = new SingleAttachment[] {};
-			for (int i = 0; i < size; i++) {
-				JSONObject tempObj = tempArray.optJSONObject(i);
-				String tempJsonString = tempObj.toString();
-				tempAttachment[i] = SingleAttachment
-						.parseSingleAttachment(tempJsonString);
+			if (null != tempArray) {
+				int size = tempArray.length();
+				SingleAttachment[] tempAttachment = new SingleAttachment[] {};
+				for (int i = 0; i < size; i++) {
+					JSONObject tempObj = tempArray.optJSONObject(i);
+					String tempJsonString = tempObj.toString();
+					tempAttachment[i] = SingleAttachment
+							.parseSingleAttachment(tempJsonString);
+				}
+				attachments.setArray(tempAttachment);
 			}
-			attachments.setArray(tempAttachment);
 			attachments.setRemainSpace(obj.optString("remain_space"));
 			attachments.setRemainCount(obj.optInt("remain_count"));
 		} catch (JSONException e) {

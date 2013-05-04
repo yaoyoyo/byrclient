@@ -23,6 +23,8 @@ public class SingleAttachment implements Serializable {
 	private String thumbnail_small; // 小缩略图链接(宽度120px)，用户空间的文件，该值为空
 	private String thumbnail_middle; // 中缩略图链接(宽度240px)，用户空间的文件，该值为空
 
+	private boolean isImg;
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -63,6 +65,14 @@ public class SingleAttachment implements Serializable {
 		return thumbnail_middle;
 	}
 
+	public boolean isImg() {
+		return isImg;
+	}
+
+	public void setIsImg(boolean isImg) {
+		this.isImg = isImg;
+	}
+
 	public static SingleAttachment parseSingleAttachment(String json) {
 		if (TextUtils.isEmpty(json)) {
 			return null;
@@ -71,7 +81,14 @@ public class SingleAttachment implements Serializable {
 		JSONObject obj;
 		try {
 			obj = new JSONObject(json);
-			singleAttachment.setName(obj.optString("name"));
+			String name = obj.optString("name");
+			if (!TextUtils.isEmpty(name)) {
+				if (name.contains(".jpg") || name.contains(".png")
+						|| name.contains(".gif") || name.contains(".jpeg")) {
+					singleAttachment.setIsImg(true);
+				}
+			}
+			singleAttachment.setName(name);
 			singleAttachment.setUrl(obj.optString("url"));
 			singleAttachment.setSize(obj.optString("size"));
 			singleAttachment

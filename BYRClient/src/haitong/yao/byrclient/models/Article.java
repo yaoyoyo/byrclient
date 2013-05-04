@@ -212,8 +212,8 @@ public class Article implements Serializable {
 		this.attachment = attachment;
 	}
 
-	public Attachments getattachment() {
-		return attachment;
+	public Attachments getAttachment() {
+		return null == attachment ? new Attachments() : attachment;
 	}
 
 	public static Article parseArticle(String json) {
