@@ -155,6 +155,9 @@ public class Board implements Serializable {
 	}
 
 	public Pagination getPagination() {
+		if (null == pagination) {
+			pagination = new Pagination();
+		}
 		return pagination;
 	}
 
@@ -163,6 +166,9 @@ public class Board implements Serializable {
 	}
 
 	public List<Article> getArticle() {
+		if (null == article) {
+			article = new ArrayList<Article>();
+		}
 		return article;
 	}
 

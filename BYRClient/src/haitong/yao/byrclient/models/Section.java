@@ -60,6 +60,9 @@ public class Section implements Serializable {
 	}
 
 	public List<String> getSubSection() {
+		if (null == subSection) {
+			subSection = new ArrayList<String>();
+		}
 		return subSection;
 	}
 
@@ -68,6 +71,9 @@ public class Section implements Serializable {
 	}
 
 	public List<Board> getBoard() {
+		if (null == board) {
+			board = new ArrayList<Board>();
+		}
 		return board;
 	}
 

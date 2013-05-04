@@ -140,10 +140,16 @@ public class Subject implements Serializable {
 	}
 
 	public User getUser() {
+		if (null == user) {
+			user = new User();
+		}
 		return user;
 	}
 
 	public Pagination getPagination() {
+		if (null == pagination) {
+			pagination = new Pagination();
+		}
 		return pagination;
 	}
 
@@ -152,6 +158,9 @@ public class Subject implements Serializable {
 	}
 
 	public List<Article> getArticle() {
+		if (null == article) {
+			article = new ArrayList<Article>();
+		}
 		return article;
 	}
 

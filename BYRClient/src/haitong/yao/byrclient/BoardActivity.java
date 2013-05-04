@@ -92,46 +92,37 @@ public class BoardActivity extends NoTitleActivity implements
 			BYRToast.showShortToast(mContext, R.string.notification_empty_page);
 			return;
 		}
-		if (null != mPagination) {
-			int totalPage = mPagination.getPageAllCount();
-			if (Integer.valueOf(page) > totalPage) {
-				BYRToast.showShortToast(mContext,
-						R.string.notification_page_out_range);
-				return;
-			} else if (Integer.valueOf(page) < 0) {
-				BYRToast.showShortToast(mContext,
-						R.string.notification_page_below_zero);
-				return;
-			}
-			mCurrentPage = Integer.valueOf(page);
-			mArticleList.setVisibility(View.GONE);
-			mFunctionBar.setVisibility(View.GONE);
-			mLoadingView.setVisibility(View.VISIBLE);
-			getBoard(mCurrentPage);
-		} else {
-			BYRToast.showShortToast(mContext, R.string.fail_get_pagination);
+		int totalPage = mPagination.getPageAllCount();
+		if (Integer.valueOf(page) > totalPage) {
+			BYRToast.showShortToast(mContext,
+					R.string.notification_page_out_range);
+			return;
+		} else if (Integer.valueOf(page) < 0) {
+			BYRToast.showShortToast(mContext,
+					R.string.notification_page_below_zero);
+			return;
 		}
+		mCurrentPage = Integer.valueOf(page);
+		mArticleList.setVisibility(View.GONE);
+		mFunctionBar.setVisibility(View.GONE);
+		mLoadingView.setVisibility(View.VISIBLE);
+		getBoard(mCurrentPage);
 	}
 
 	@Override
 	public void next() {
-		if (null != mPagination) {
-			int totalPage = mPagination.getPageAllCount();
-			if (mCurrentPage == totalPage) {
-				BYRToast.showShortToast(mContext,
-						R.string.notification_last_page);
-			} else if (mCurrentPage > totalPage) {
-				BYRToast.showShortToast(mContext,
-						R.string.notification_page_out_range);
-			} else {
-				mCurrentPage++;
-				mArticleList.setVisibility(View.GONE);
-				mFunctionBar.setVisibility(View.GONE);
-				mLoadingView.setVisibility(View.VISIBLE);
-				getBoard(mCurrentPage);
-			}
+		int totalPage = mPagination.getPageAllCount();
+		if (mCurrentPage == totalPage) {
+			BYRToast.showShortToast(mContext, R.string.notification_last_page);
+		} else if (mCurrentPage > totalPage) {
+			BYRToast.showShortToast(mContext,
+					R.string.notification_page_out_range);
 		} else {
-			BYRToast.showShortToast(mContext, R.string.fail_get_pagination);
+			mCurrentPage++;
+			mArticleList.setVisibility(View.GONE);
+			mFunctionBar.setVisibility(View.GONE);
+			mLoadingView.setVisibility(View.VISIBLE);
+			getBoard(mCurrentPage);
 		}
 	}
 

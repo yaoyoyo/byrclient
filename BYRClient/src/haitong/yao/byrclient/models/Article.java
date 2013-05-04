@@ -205,6 +205,9 @@ public class Article implements Serializable {
 	}
 
 	public User getUser() {
+		if (null == user) {
+			user = new User();
+		}
 		return user;
 	}
 
@@ -213,7 +216,10 @@ public class Article implements Serializable {
 	}
 
 	public Attachments getAttachment() {
-		return null == attachment ? new Attachments() : attachment;
+		if (null == attachment) {
+			attachment = new Attachments();
+		}
+		return attachment;
 	}
 
 	public static Article parseArticle(String json) {

@@ -91,6 +91,9 @@ public class Mail implements Serializable {
 	}
 
 	public User getUser() {
+		if (null == user) {
+			user = new User();
+		}
 		return user;
 	}
 
@@ -115,6 +118,9 @@ public class Mail implements Serializable {
 	}
 
 	public Attachments getAttachment() {
+		if (null == attachment) {
+			attachment = new Attachments();
+		}
 		return attachment;
 	}
 

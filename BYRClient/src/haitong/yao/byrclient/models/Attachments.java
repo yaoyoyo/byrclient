@@ -1,6 +1,8 @@
 package haitong.yao.byrclient.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,17 +20,11 @@ public class Attachments implements Serializable {
 
 	private static final long serialVersionUID = 8505905510467509801L;
 
-	private SingleAttachment[] array; // 文件列表
 	private String remain_space; // 剩余空间大小
 	private int remain_count; // 剩余附件个数
 
-	public void setArray(SingleAttachment[] array) {
-		this.array = array;
-	}
-
-	public SingleAttachment[] getArray() {
-		return array;
-	}
+	private List<SingleAttachment> images;
+	private List<SingleAttachment> files;
 
 	public void setRemainSpace(String remain_space) {
 		this.remain_space = remain_space;
@@ -46,6 +42,28 @@ public class Attachments implements Serializable {
 		return remain_count;
 	}
 
+	public List<SingleAttachment> getImages() {
+		if (null == images) {
+			images = new ArrayList<SingleAttachment>();
+		}
+		return images;
+	}
+
+	public void setImages(List<SingleAttachment> images) {
+		this.images = images;
+	}
+
+	public List<SingleAttachment> getFiles() {
+		if (null == files) {
+			files = new ArrayList<SingleAttachment>();
+		}
+		return files;
+	}
+
+	public void setFiles(List<SingleAttachment> files) {
+		this.files = files;
+	}
+
 	public static Attachments parseAttachments(String json) {
 		if (TextUtils.isEmpty(json)) {
 			return null;
@@ -57,14 +75,17 @@ public class Attachments implements Serializable {
 			JSONArray tempArray = obj.optJSONArray("array");
 			if (null != tempArray) {
 				int size = tempArray.length();
-				SingleAttachment[] tempAttachment = new SingleAttachment[] {};
 				for (int i = 0; i < size; i++) {
 					JSONObject tempObj = tempArray.optJSONObject(i);
 					String tempJsonString = tempObj.toString();
-					tempAttachment[i] = SingleAttachment
+					SingleAttachment tempAttachment = SingleAttachment
 							.parseSingleAttachment(tempJsonString);
+					if (tempAttachment.isImg()) {
+						attachments.getImages().add(tempAttachment);
+					} else {
+						attachments.getFiles().add(tempAttachment);
+					}
 				}
-				attachments.setArray(tempAttachment);
 			}
 			attachments.setRemainSpace(obj.optString("remain_space"));
 			attachments.setRemainCount(obj.optInt("remain_count"));
