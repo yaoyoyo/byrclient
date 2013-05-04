@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -92,6 +93,8 @@ public class SubjectActivity extends NoTitleActivity implements
 	public void turnto() {
 		EditText editText = (EditText) findViewById(R.id.list_function_bar_page);
 		String page = editText.getText().toString().trim();
+		editText.setText("");
+		hideKeyboard();
 		if (TextUtils.isEmpty(page)) {
 			BYRToast.showShortToast(mContext, R.string.notification_empty_page);
 			return;
@@ -161,6 +164,12 @@ public class SubjectActivity extends NoTitleActivity implements
 
 	private void getSubject(int page) {
 		new GetSubjectTask(mContext, mBoardName, mId, page, this).execute();
+	}
+
+	private void hideKeyboard() {
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(findViewById(R.id.list_function_bar_page)
+				.getWindowToken(), 0);
 	}
 
 }
