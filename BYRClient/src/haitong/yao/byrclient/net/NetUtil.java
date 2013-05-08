@@ -110,6 +110,9 @@ public class NetUtil {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            return null;
         }
         return result;
     }

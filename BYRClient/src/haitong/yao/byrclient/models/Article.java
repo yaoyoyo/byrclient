@@ -188,7 +188,7 @@ public class Article implements Serializable {
         this.has_attachment = has_attachment;
     }
 
-    public boolean getHasAttachment() {
+    public boolean hasAttachment() {
         return has_attachment;
     }
 
@@ -196,7 +196,7 @@ public class Article implements Serializable {
         this.is_admin = is_admin;
     }
 
-    public boolean getIsAdmin() {
+    public boolean isAdmin() {
         return is_admin;
     }
 

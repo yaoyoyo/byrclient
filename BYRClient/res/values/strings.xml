@@ -62,6 +62,12 @@
     <string name="sections_china">家乡</string>
     <string name="sections_onlinegames">网络游戏</string>
 
+    <!-- 回帖列表 -->
+    <string name="subject_item_lz">楼主</string>
+    <string name="subject_item_first">沙发</string>
+    <string name="subject_item_floor">%d楼</string>
+    <string name="subject_item_info">用户：%1$s (%2$s)\n发表时间：%3$s</string>
+
     <!-- 列表工具条 -->
     <string name="list_function_bar_home">主页</string>
     <string name="list_function_bar_refresh">刷新</string>

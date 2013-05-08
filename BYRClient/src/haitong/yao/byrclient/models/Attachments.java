@@ -23,8 +23,8 @@ public class Attachments implements Serializable {
     private String remain_space; // 剩余空间大小
     private int remain_count; // 剩余附件个数
 
-    private List<SingleAttachment> images;
-    private List<SingleAttachment> files;
+    private List<SingleAttachment> images = new ArrayList<SingleAttachment>();
+    private List<SingleAttachment> files = new ArrayList<SingleAttachment>();
 
     public void setRemainSpace(String remain_space) {
         this.remain_space = remain_space;

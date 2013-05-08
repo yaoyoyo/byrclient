@@ -85,7 +85,7 @@ public class ArticleListAdapter extends BaseAdapter {
             } else if (mType == TYPE_SPECIAL) {
                 viewHolder.board.setText("From: " + article.getUser().getId());
             }
-            if (article.getHasAttachment()) {
+            if (article.hasAttachment()) {
                 viewHolder.hasAttachment.setVisibility(View.VISIBLE);
             } else {
                 viewHolder.hasAttachment.setVisibility(View.GONE);

@@ -17,6 +17,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -40,6 +41,7 @@ public class SubjectActivity extends NoTitleActivity implements
     private ListFunctionBar mFunctionBar;
 
     private Context mContext;
+    private Handler mHandler;
 
     private String mBoardName;
     private int mId;
@@ -50,6 +52,7 @@ public class SubjectActivity extends NoTitleActivity implements
     protected void init(Bundle savedInstanceState) {
         setContentView(R.layout.act_subject);
         mContext = getApplicationContext();
+        mHandler = new Handler();
         mBoardName = getIntent().getStringExtra(IntentExtras.BOARD_NAME);
         mId = getIntent().getIntExtra(IntentExtras.SUBJECT_ID, 0);
         mCurrentPage = START_PAGE;
@@ -158,7 +161,7 @@ public class SubjectActivity extends NoTitleActivity implements
     }
 
     private void initAdapter() {
-        mListAdapter = new SubjectAdapter(mContext);
+        mListAdapter = new SubjectAdapter(mContext, mHandler);
         mArticleList.setAdapter(mListAdapter);
     }
 
