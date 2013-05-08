@@ -17,67 +17,67 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class ToptenActivity extends NoTitleActivity implements
-		OnItemClickListener, ITaskFinishListener {
+        OnItemClickListener, ITaskFinishListener {
 
-	private final int DIVIDER_HEIGHT = 6;
+    private final int DIVIDER_HEIGHT = 6;
 
-	private ListView mToptenList;
-	private ArticleListAdapter mListAdapter;
-	private View mLoadingView;
+    private ListView mToptenList;
+    private ArticleListAdapter mListAdapter;
+    private View mLoadingView;
 
-	private Context mContext;
+    private Context mContext;
 
-	@Override
-	protected void init(Bundle savedInstanceState) {
-		setContentView(R.layout.act_topten);
-		mContext = getApplicationContext();
-		findViewsById();
-		initAdapter();
-		setListeners();
-		getArticles();
-	}
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setContentView(R.layout.act_topten);
+        mContext = getApplicationContext();
+        findViewsById();
+        initAdapter();
+        setListeners();
+        getArticles();
+    }
 
-	@Override
-	protected void findViewsById() {
-		mToptenList = (ListView) findViewById(R.id.topten_list);
-		mToptenList.setDivider(null);
-		mToptenList.setDividerHeight(DIVIDER_HEIGHT);
-		mLoadingView = findViewById(R.id.loading_view);
-	}
+    @Override
+    protected void findViewsById() {
+        mToptenList = (ListView) findViewById(R.id.topten_list);
+        mToptenList.setDivider(null);
+        mToptenList.setDividerHeight(DIVIDER_HEIGHT);
+        mLoadingView = findViewById(R.id.loading_view);
+    }
 
-	@Override
-	protected void setListeners() {
-		mToptenList.setOnItemClickListener(this);
-	}
+    @Override
+    protected void setListeners() {
+        mToptenList.setOnItemClickListener(this);
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-	}
+    }
 
-	@Override
-	public void onTaskFinished(AbsTask task, Object result) {
+    @Override
+    public void onTaskFinished(AbsTask task, Object result) {
 
-		mLoadingView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.GONE);
 
-		if (null == result) {
-			BYRToast.showLongToast(mContext, R.string.fail_get_content);
-		} else {
-			mToptenList.setVisibility(View.VISIBLE);
-			mListAdapter.setContent((List<Article>) result);
-			mListAdapter.notifyDataSetChanged();
-		}
+        if (null == result) {
+            BYRToast.showLongToast(mContext, R.string.fail_get_content);
+        } else {
+            mToptenList.setVisibility(View.VISIBLE);
+            mListAdapter.setContent((List<Article>) result);
+            mListAdapter.notifyDataSetChanged();
+        }
 
-	}
+    }
 
-	private void initAdapter() {
-		mListAdapter = new ArticleListAdapter(mContext,
-				ArticleListAdapter.TYPE_SPECIAL);
-		mToptenList.setAdapter(mListAdapter);
-	}
+    private void initAdapter() {
+        mListAdapter = new ArticleListAdapter(mContext,
+                ArticleListAdapter.TYPE_SPECIAL);
+        mToptenList.setAdapter(mListAdapter);
+    }
 
-	private void getArticles() {
-		new GetArticlesTask(mContext, "topten", this).execute();
-	}
+    private void getArticles() {
+        new GetArticlesTask(mContext, "topten", this).execute();
+    }
 
 }

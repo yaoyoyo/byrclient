@@ -6,35 +6,35 @@ import android.os.AsyncTask;
 
 public class GetArticlesTask extends AbsTask {
 
-	private String mType;
+    private String mType;
 
-	public GetArticlesTask(Context context, String type,
-			ITaskFinishListener listener) {
-		mContext = context;
-		mType = type;
-		mListener = listener;
-	}
+    public GetArticlesTask(Context context, String type,
+            ITaskFinishListener listener) {
+        mContext = context;
+        mType = type;
+        mListener = listener;
+    }
 
-	@Override
-	public void execute() {
-		new GetArticles().execute(mType);
-	}
+    @Override
+    public void execute() {
+        new GetArticles().execute(mType);
+    }
 
-	private class GetArticles extends AsyncTask<String, Object, Object> {
+    private class GetArticles extends AsyncTask<String, Object, Object> {
 
-		@Override
-		protected Object doInBackground(String... params) {
-			return NetUtil.getArticles(mContext, mType);
-		}
+        @Override
+        protected Object doInBackground(String... params) {
+            return NetUtil.getArticles(mContext, mType);
+        }
 
-		@Override
-		protected void onPostExecute(Object result) {
-			super.onPostExecute(result);
-			if (null != mListener) {
-				mListener.onTaskFinished(GetArticlesTask.this, result);
-			}
-		}
+        @Override
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
+            if (null != mListener) {
+                mListener.onTaskFinished(GetArticlesTask.this, result);
+            }
+        }
 
-	}
+    }
 
 }

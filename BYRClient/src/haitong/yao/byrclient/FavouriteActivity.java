@@ -20,70 +20,70 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 public class FavouriteActivity extends NoTitleActivity implements
-		OnItemClickListener, ITaskFinishListener {
+        OnItemClickListener, ITaskFinishListener {
 
-	private final int TOP_LEVEL = 0;
+    private final int TOP_LEVEL = 0;
 
-	private GridView mFavouriteList;
-	private BoardListAdapter mListAdapter;
-	private View mLoadingView;
+    private GridView mFavouriteList;
+    private BoardListAdapter mListAdapter;
+    private View mLoadingView;
 
-	private Context mContext;
+    private Context mContext;
 
-	@Override
-	protected void init(Bundle savedInstanceState) {
-		setContentView(R.layout.act_favourite);
-		mContext = getApplicationContext();
-		findViewsById();
-		initAdapter();
-		setListeners();
-		getFavourites();
-	}
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setContentView(R.layout.act_favourite);
+        mContext = getApplicationContext();
+        findViewsById();
+        initAdapter();
+        setListeners();
+        getFavourites();
+    }
 
-	@Override
-	protected void findViewsById() {
-		mFavouriteList = (GridView) findViewById(R.id.favourite_gv);
-		mLoadingView = findViewById(R.id.loading_view);
-	}
+    @Override
+    protected void findViewsById() {
+        mFavouriteList = (GridView) findViewById(R.id.favourite_gv);
+        mLoadingView = findViewById(R.id.loading_view);
+    }
 
-	@Override
-	protected void setListeners() {
-		mFavouriteList.setOnItemClickListener(this);
-	}
+    @Override
+    protected void setListeners() {
+        mFavouriteList.setOnItemClickListener(this);
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		Board board = mListAdapter.getItem(position);
-		if (null == board || TextUtils.isEmpty(board.getName())) {
-			return;
-		}
-		Intent intent = new Intent();
-		intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
-		intent.setClass(FavouriteActivity.this, BoardActivity.class);
-		startActivity(intent);
-	}
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+            long id) {
+        Board board = mListAdapter.getItem(position);
+        if (null == board || TextUtils.isEmpty(board.getName())) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
+        intent.setClass(FavouriteActivity.this, BoardActivity.class);
+        startActivity(intent);
+    }
 
-	@Override
-	public void onTaskFinished(AbsTask task, Object result) {
+    @Override
+    public void onTaskFinished(AbsTask task, Object result) {
 
-		mLoadingView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.GONE);
 
-		if (null == result) {
-			BYRToast.showLongToast(mContext, R.string.fail_get_content);
-		} else {
-			mFavouriteList.setVisibility(View.VISIBLE);
-			mListAdapter.setContent((List<Board>) result);
-			mListAdapter.notifyDataSetChanged();
-		}
-	}
+        if (null == result) {
+            BYRToast.showLongToast(mContext, R.string.fail_get_content);
+        } else {
+            mFavouriteList.setVisibility(View.VISIBLE);
+            mListAdapter.setContent((List<Board>) result);
+            mListAdapter.notifyDataSetChanged();
+        }
+    }
 
-	private void initAdapter() {
-		mListAdapter = new BoardListAdapter(mContext);
-		mFavouriteList.setAdapter(mListAdapter);
-	}
+    private void initAdapter() {
+        mListAdapter = new BoardListAdapter(mContext);
+        mFavouriteList.setAdapter(mListAdapter);
+    }
 
-	private void getFavourites() {
-		new GetFavouriteTask(mContext, TOP_LEVEL, this).execute();
-	}
+    private void getFavourites() {
+        new GetFavouriteTask(mContext, TOP_LEVEL, this).execute();
+    }
 }

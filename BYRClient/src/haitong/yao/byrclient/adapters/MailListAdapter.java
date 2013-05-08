@@ -16,87 +16,87 @@ import android.widget.TextView;
 
 public class MailListAdapter extends BaseAdapter {
 
-	private List<Mail> mMails = new ArrayList<Mail>();
+    private List<Mail> mMails = new ArrayList<Mail>();
 
-	private LayoutInflater mInflater;
+    private LayoutInflater mInflater;
 
-	public MailListAdapter(Context context) {
-		mInflater = LayoutInflater.from(context);
-	}
+    public MailListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
-	public void setContent(ArrayList<Mail> mails) {
-		mMails = mails;
-	}
+    public void setContent(ArrayList<Mail> mails) {
+        mMails = mails;
+    }
 
-	@Override
-	public int getCount() {
-		if (null == mMails) {
-			return 0;
-		}
-		return mMails.size();
-	}
+    @Override
+    public int getCount() {
+        if (null == mMails) {
+            return 0;
+        }
+        return mMails.size();
+    }
 
-	@Override
-	public Mail getItem(int position) {
-		if (null == mMails || getCount() == 0 || position > mMails.size()) {
-			return null;
-		}
-		return mMails.get(position);
-	}
+    @Override
+    public Mail getItem(int position) {
+        if (null == mMails || getCount() == 0 || position > mMails.size()) {
+            return null;
+        }
+        return mMails.get(position);
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-		if (null == getItem(position)) {
-			return null;
-		}
+        if (null == getItem(position)) {
+            return null;
+        }
 
-		Mail mail = getItem(position);
-		ViewHolder viewHolder = null;
-		if (null == convertView || null == convertView.getTag()) {
-			convertView = mInflater.inflate(R.layout.view_article_item, null);
-			viewHolder = new ViewHolder();
-			viewHolder.title = (TextView) convertView
-					.findViewById(R.id.topten_item_title);
-			viewHolder.from = (TextView) convertView
-					.findViewById(R.id.topten_item_board);
-			viewHolder.hasAttachment = (ImageView) convertView
-					.findViewById(R.id.topten_item_has_attachment);
-			convertView.setTag(viewHolder);
-		}
+        Mail mail = getItem(position);
+        ViewHolder viewHolder = null;
+        if (null == convertView || null == convertView.getTag()) {
+            convertView = mInflater.inflate(R.layout.view_article_item, null);
+            viewHolder = new ViewHolder();
+            viewHolder.title = (TextView) convertView
+                    .findViewById(R.id.topten_item_title);
+            viewHolder.from = (TextView) convertView
+                    .findViewById(R.id.topten_item_board);
+            viewHolder.hasAttachment = (ImageView) convertView
+                    .findViewById(R.id.topten_item_has_attachment);
+            convertView.setTag(viewHolder);
+        }
 
-		viewHolder = (ViewHolder) convertView.getTag();
-		try {
-			viewHolder.title.setText(mail.getTitle());
-			viewHolder.from.setText("From: " + mail.getUser().getId());
-			if (mail.getHasAttachment()) {
-				viewHolder.hasAttachment.setVisibility(View.VISIBLE);
-			} else {
-				viewHolder.hasAttachment.setVisibility(View.GONE);
-			}
-			if (!mail.getIsRead()) {
-				viewHolder.title.setTextColor(0xFFFFFFFF);
-				viewHolder.from.setTextColor(0xFFFFFFFF);
-			} else {
-				viewHolder.title.setTextColor(0xFFDDDDDD);
-				viewHolder.from.setTextColor(0xFFDDDDDD);
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		return convertView;
-	}
+        viewHolder = (ViewHolder) convertView.getTag();
+        try {
+            viewHolder.title.setText(mail.getTitle());
+            viewHolder.from.setText("From: " + mail.getUser().getId());
+            if (mail.getHasAttachment()) {
+                viewHolder.hasAttachment.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.hasAttachment.setVisibility(View.GONE);
+            }
+            if (!mail.getIsRead()) {
+                viewHolder.title.setTextColor(0xFFFFFFFF);
+                viewHolder.from.setTextColor(0xFFFFFFFF);
+            } else {
+                viewHolder.title.setTextColor(0xFFDDDDDD);
+                viewHolder.from.setTextColor(0xFFDDDDDD);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return convertView;
+    }
 
-	private class ViewHolder {
+    private class ViewHolder {
 
-		TextView title;
-		TextView from;
-		ImageView hasAttachment;
-	}
+        TextView title;
+        TextView from;
+        ImageView hasAttachment;
+    }
 
 }

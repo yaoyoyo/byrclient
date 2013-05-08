@@ -4,34 +4,36 @@ import haitong.yao.byrclient.net.NetUtil;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class GetFavouriteTask extends AbsTask {
+public class GetBoardTask extends AbsTask {
 
-    private int mLevel;
+    private String mName;
+    private int mPage;
 
-    public GetFavouriteTask(Context context, int level,
+    public GetBoardTask(Context context, String name, int page,
             ITaskFinishListener listener) {
         mContext = context;
-        mLevel = level;
+        mName = name;
+        mPage = page;
         mListener = listener;
     }
 
     @Override
     public void execute() {
-        new GetFavourite().execute(mLevel);
+        new GetBoard().execute(mName);
     }
 
-    private class GetFavourite extends AsyncTask<Integer, Object, Object> {
+    private class GetBoard extends AsyncTask<Object, Object, Object> {
 
         @Override
-        protected Object doInBackground(Integer... params) {
-            return NetUtil.getFavourites(mContext, mLevel);
+        protected Object doInBackground(Object... params) {
+            return NetUtil.getBoard(mContext, mName, mPage);
         }
 
         @Override
         protected void onPostExecute(Object result) {
             super.onPostExecute(result);
             if (null != mListener) {
-                mListener.onTaskFinished(GetFavouriteTask.this, result);
+                mListener.onTaskFinished(GetBoardTask.this, result);
             }
         }
 

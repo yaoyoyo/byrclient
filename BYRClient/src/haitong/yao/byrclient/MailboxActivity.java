@@ -18,73 +18,73 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class MailboxActivity extends NoTitleActivity implements
-		OnItemClickListener, ITaskFinishListener {
+        OnItemClickListener, ITaskFinishListener {
 
-	private final int DIVIDER_HEIGHT = 6;
+    private final int DIVIDER_HEIGHT = 6;
 
-	private ListView mMailList;
-	private MailListAdapter mListAdapter;
-	private View mLoadingView;
+    private ListView mMailList;
+    private MailListAdapter mListAdapter;
+    private View mLoadingView;
 
-	private Context mContext;
-	private Handler mHandler;
+    private Context mContext;
+    private Handler mHandler;
 
-	@Override
-	protected void init(Bundle savedInstanceState) {
-		setContentView(R.layout.act_mailbox);
-		mContext = getApplicationContext();
-		mHandler = new Handler();
-		findViewsById();
-		initAdapter();
-		setListeners();
-		getMails();
-	}
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setContentView(R.layout.act_mailbox);
+        mContext = getApplicationContext();
+        mHandler = new Handler();
+        findViewsById();
+        initAdapter();
+        setListeners();
+        getMails();
+    }
 
-	@Override
-	protected void findViewsById() {
-		mMailList = (ListView) findViewById(R.id.mailbox_list);
-		mMailList.setDivider(null);
-		mMailList.setDividerHeight(DIVIDER_HEIGHT);
-		mLoadingView = findViewById(R.id.loading_view);
-	}
+    @Override
+    protected void findViewsById() {
+        mMailList = (ListView) findViewById(R.id.mailbox_list);
+        mMailList.setDivider(null);
+        mMailList.setDividerHeight(DIVIDER_HEIGHT);
+        mLoadingView = findViewById(R.id.loading_view);
+    }
 
-	@Override
-	protected void setListeners() {
-		mMailList.setOnItemClickListener(this);
-	}
+    @Override
+    protected void setListeners() {
+        mMailList.setOnItemClickListener(this);
+    }
 
-	@Override
-	public void onTaskFinished(AbsTask task, final Object result) {
+    @Override
+    public void onTaskFinished(AbsTask task, final Object result) {
 
-		mHandler.post(new Runnable() {
-			@Override
-			public void run() {
-				mLoadingView.setVisibility(View.GONE);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mLoadingView.setVisibility(View.GONE);
 
-				if (null == result) {
-					BYRToast.showLongToast(mContext, R.string.fail_get_content);
-				} else {
-					mMailList.setVisibility(View.VISIBLE);
-					mListAdapter.setContent((ArrayList<Mail>) result);
-					mListAdapter.notifyDataSetChanged();
-				}
-			}
-		});
+                if (null == result) {
+                    BYRToast.showLongToast(mContext, R.string.fail_get_content);
+                } else {
+                    mMailList.setVisibility(View.VISIBLE);
+                    mListAdapter.setContent((ArrayList<Mail>) result);
+                    mListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
 
-	}
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-	}
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+            long id) {
+    }
 
-	private void initAdapter() {
-		mListAdapter = new MailListAdapter(mContext);
-		mMailList.setAdapter(mListAdapter);
-	}
+    private void initAdapter() {
+        mListAdapter = new MailListAdapter(mContext);
+        mMailList.setAdapter(mListAdapter);
+    }
 
-	private void getMails() {
-		new GetMailsTask(mContext, "inbox", this).execute();
-	}
+    private void getMails() {
+        new GetMailsTask(mContext, "inbox", this).execute();
+    }
 
 }

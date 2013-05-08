@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_blue_dark"
+    android:orientation="horizontal"
+    android:weightSum="9" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/subject_item_id"
+            android:layout_width="fill_parent"
+            android:layout_height="24dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/text_green"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/subject_item_protrait"
+            android:layout_width="fill_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="12dp"
+            android:padding="2dp"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/subject_item_floor"
+            android:layout_width="fill_parent"
+            android:layout_height="24dp"
+            android:layout_marginRight="4dp"
+            android:gravity="center_vertical|right"
+            android:singleLine="true"
+            android:textColor="@color/text_green"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/subject_item_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:maxLines="4"
+            android:padding="2dp"
+            android:textColor="@color/text_blue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/subject_item_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="2dp"
+            android:textColor="@color/text_white"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/subject_item_attachments"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

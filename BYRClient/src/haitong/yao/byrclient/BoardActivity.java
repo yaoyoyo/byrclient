@@ -26,155 +26,155 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class BoardActivity extends NoTitleActivity implements
-		OnItemClickListener, ITaskFinishListener, ListBarClickListener {
+        OnItemClickListener, ITaskFinishListener, ListBarClickListener {
 
-	private final int DIVIDER_HEIGHT = 6;
-	private final int START_PAGE = 1;
+    private final int DIVIDER_HEIGHT = 6;
+    private final int START_PAGE = 1;
 
-	private ListView mArticleList;
-	private ArticleListAdapter mListAdapter;
-	private View mLoadingView;
-	private ListFunctionBar mFunctionBar;
+    private ListView mArticleList;
+    private ArticleListAdapter mListAdapter;
+    private View mLoadingView;
+    private ListFunctionBar mFunctionBar;
 
-	private Context mContext;
+    private Context mContext;
 
-	private String mBoardName;
-	private int mCurrentPage;
-	private Pagination mPagination;
+    private String mBoardName;
+    private int mCurrentPage;
+    private Pagination mPagination;
 
-	@Override
-	protected void init(Bundle savedInstanceState) {
-		setContentView(R.layout.act_board);
-		mContext = getApplicationContext();
-		mBoardName = getIntent().getStringExtra(IntentExtras.BOARD_NAME);
-		mCurrentPage = START_PAGE;
-		findViewsById();
-		initAdapter();
-		setListeners();
-		getBoard(START_PAGE);
-	}
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setContentView(R.layout.act_board);
+        mContext = getApplicationContext();
+        mBoardName = getIntent().getStringExtra(IntentExtras.BOARD_NAME);
+        mCurrentPage = START_PAGE;
+        findViewsById();
+        initAdapter();
+        setListeners();
+        getBoard(START_PAGE);
+    }
 
-	@Override
-	protected void findViewsById() {
-		mArticleList = (ListView) findViewById(R.id.board_list);
-		mArticleList.setDivider(null);
-		mArticleList.setDividerHeight(DIVIDER_HEIGHT);
-		mLoadingView = findViewById(R.id.loading_view);
-		mFunctionBar = (ListFunctionBar) findViewById(R.id.list_function_bar);
-		mFunctionBar.setVisibility(View.GONE);
-	}
+    @Override
+    protected void findViewsById() {
+        mArticleList = (ListView) findViewById(R.id.board_list);
+        mArticleList.setDivider(null);
+        mArticleList.setDividerHeight(DIVIDER_HEIGHT);
+        mLoadingView = findViewById(R.id.loading_view);
+        mFunctionBar = (ListFunctionBar) findViewById(R.id.list_function_bar);
+        mFunctionBar.setVisibility(View.GONE);
+    }
 
-	@Override
-	protected void setListeners() {
-		mArticleList.setOnItemClickListener(this);
-		mFunctionBar.setBarClickListener(this);
-	}
+    @Override
+    protected void setListeners() {
+        mArticleList.setOnItemClickListener(this);
+        mFunctionBar.setBarClickListener(this);
+    }
 
-	@Override
-	public void home() {
-		Intent intent = new Intent();
-		intent.setClass(this, MainActivity.class);
-		startActivity(intent);
-	}
+    @Override
+    public void home() {
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        startActivity(intent);
+    }
 
-	@Override
-	public void refresh() {
-		mArticleList.setVisibility(View.GONE);
-		mFunctionBar.setVisibility(View.GONE);
-		mLoadingView.setVisibility(View.VISIBLE);
-		getBoard(mCurrentPage);
-	}
+    @Override
+    public void refresh() {
+        mArticleList.setVisibility(View.GONE);
+        mFunctionBar.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        getBoard(mCurrentPage);
+    }
 
-	@Override
-	public void turnto() {
-		EditText editText = (EditText) findViewById(R.id.list_function_bar_page);
-		String page = editText.getText().toString().trim();
-		editText.setText("");
-		hideKeyboard();
-		if (TextUtils.isEmpty(page)) {
-			BYRToast.showShortToast(mContext, R.string.notification_empty_page);
-			return;
-		}
-		int totalPage = mPagination.getPageAllCount();
-		if (Integer.valueOf(page) > totalPage) {
-			BYRToast.showShortToast(mContext,
-					R.string.notification_page_out_range);
-			return;
-		} else if (Integer.valueOf(page) < 0) {
-			BYRToast.showShortToast(mContext,
-					R.string.notification_page_below_zero);
-			return;
-		}
-		mCurrentPage = Integer.valueOf(page);
-		mArticleList.setVisibility(View.GONE);
-		mFunctionBar.setVisibility(View.GONE);
-		mLoadingView.setVisibility(View.VISIBLE);
-		getBoard(mCurrentPage);
-	}
+    @Override
+    public void turnto() {
+        EditText editText = (EditText) findViewById(R.id.list_function_bar_page);
+        String page = editText.getText().toString().trim();
+        editText.setText("");
+        hideKeyboard();
+        if (TextUtils.isEmpty(page)) {
+            BYRToast.showShortToast(mContext, R.string.notification_empty_page);
+            return;
+        }
+        int totalPage = mPagination.getPageAllCount();
+        if (Integer.valueOf(page) > totalPage) {
+            BYRToast.showShortToast(mContext,
+                    R.string.notification_page_out_range);
+            return;
+        } else if (Integer.valueOf(page) < 0) {
+            BYRToast.showShortToast(mContext,
+                    R.string.notification_page_below_zero);
+            return;
+        }
+        mCurrentPage = Integer.valueOf(page);
+        mArticleList.setVisibility(View.GONE);
+        mFunctionBar.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        getBoard(mCurrentPage);
+    }
 
-	@Override
-	public void next() {
-		int totalPage = mPagination.getPageAllCount();
-		if (mCurrentPage == totalPage) {
-			BYRToast.showShortToast(mContext, R.string.notification_last_page);
-		} else if (mCurrentPage > totalPage) {
-			BYRToast.showShortToast(mContext,
-					R.string.notification_page_out_range);
-		} else {
-			mCurrentPage++;
-			mArticleList.setVisibility(View.GONE);
-			mFunctionBar.setVisibility(View.GONE);
-			mLoadingView.setVisibility(View.VISIBLE);
-			getBoard(mCurrentPage);
-		}
-	}
+    @Override
+    public void next() {
+        int totalPage = mPagination.getPageAllCount();
+        if (mCurrentPage == totalPage) {
+            BYRToast.showShortToast(mContext, R.string.notification_last_page);
+        } else if (mCurrentPage > totalPage) {
+            BYRToast.showShortToast(mContext,
+                    R.string.notification_page_out_range);
+        } else {
+            mCurrentPage++;
+            mArticleList.setVisibility(View.GONE);
+            mFunctionBar.setVisibility(View.GONE);
+            mLoadingView.setVisibility(View.VISIBLE);
+            getBoard(mCurrentPage);
+        }
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Article article = mListAdapter.getItem(arg2);
-		if (null == article) {
-			return;
-		}
-		Intent intent = new Intent();
-		intent.putExtra(IntentExtras.BOARD_NAME, mBoardName);
-		intent.putExtra(IntentExtras.SUBJECT_ID, article.getId());
-		intent.setClass(BoardActivity.this, SubjectActivity.class);
-		startActivity(intent);
-	}
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        Article article = mListAdapter.getItem(arg2);
+        if (null == article) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(IntentExtras.BOARD_NAME, mBoardName);
+        intent.putExtra(IntentExtras.SUBJECT_ID, article.getId());
+        intent.setClass(BoardActivity.this, SubjectActivity.class);
+        startActivity(intent);
+    }
 
-	@Override
-	public void onTaskFinished(AbsTask task, Object result) {
+    @Override
+    public void onTaskFinished(AbsTask task, Object result) {
 
-		mLoadingView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.GONE);
 
-		if (null == result) {
-			BYRToast.showLongToast(mContext, R.string.fail_get_content);
-		} else {
-			mArticleList.setVisibility(View.VISIBLE);
-			mFunctionBar.setVisibility(View.VISIBLE);
-			Board board = (Board) result;
-			mPagination = board.getPagination();
-			List<Article> articles = board.getArticle();
-			mListAdapter.setContent(articles);
-			mListAdapter.notifyDataSetChanged();
-		}
+        if (null == result) {
+            BYRToast.showLongToast(mContext, R.string.fail_get_content);
+        } else {
+            mArticleList.setVisibility(View.VISIBLE);
+            mFunctionBar.setVisibility(View.VISIBLE);
+            Board board = (Board) result;
+            mPagination = board.getPagination();
+            List<Article> articles = board.getArticle();
+            mListAdapter.setContent(articles);
+            mListAdapter.notifyDataSetChanged();
+        }
 
-	}
+    }
 
-	private void initAdapter() {
-		mListAdapter = new ArticleListAdapter(mContext,
-				ArticleListAdapter.TYPE_NORMAL);
-		mArticleList.setAdapter(mListAdapter);
-	}
+    private void initAdapter() {
+        mListAdapter = new ArticleListAdapter(mContext,
+                ArticleListAdapter.TYPE_NORMAL);
+        mArticleList.setAdapter(mListAdapter);
+    }
 
-	private void getBoard(int page) {
-		new GetBoardTask(mContext, mBoardName, page, this).execute();
-	}
+    private void getBoard(int page) {
+        new GetBoardTask(mContext, mBoardName, page, this).execute();
+    }
 
-	private void hideKeyboard() {
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(findViewById(R.id.list_function_bar_page)
-				.getWindowToken(), 0);
-	}
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(findViewById(R.id.list_function_bar_page)
+                .getWindowToken(), 0);
+    }
 
 }

@@ -15,51 +15,51 @@ import android.text.TextUtils;
  */
 public class RequestError implements Serializable {
 
-	private static final long serialVersionUID = -3465768113411700365L;
+    private static final long serialVersionUID = -3465768113411700365L;
 
-	private String request;
-	private String code;
-	private String msg;
+    private String request;
+    private String code;
+    private String msg;
 
-	public void setRequest(String request) {
-		this.request = request;
-	}
+    public void setRequest(String request) {
+        this.request = request;
+    }
 
-	public String getRequest() {
-		return request;
-	}
+    public String getRequest() {
+        return request;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
-	public String getMsg() {
-		return msg;
-	}
+    public String getMsg() {
+        return msg;
+    }
 
-	public static RequestError parseRequestError(String json) {
-		if (TextUtils.isEmpty(json)) {
-			return null;
-		}
-		RequestError requestError = new RequestError();
-		JSONObject obj;
-		try {
-			obj = new JSONObject(json);
-			requestError.setRequest(obj.optString("request"));
-			requestError.setCode(obj.optString("code"));
-			requestError.setMsg(obj.optString("msg"));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return requestError;
-	}
+    public static RequestError parseRequestError(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        }
+        RequestError requestError = new RequestError();
+        JSONObject obj;
+        try {
+            obj = new JSONObject(json);
+            requestError.setRequest(obj.optString("request"));
+            requestError.setCode(obj.optString("code"));
+            requestError.setMsg(obj.optString("msg"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return requestError;
+    }
 
 }

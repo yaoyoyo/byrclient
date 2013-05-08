@@ -22,173 +22,173 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 public class SubSectionActivity extends NoTitleActivity implements
-		OnItemClickListener, ITaskFinishListener {
+        OnItemClickListener, ITaskFinishListener {
 
-	private static final float THRESHOLD_FLING_VELOCITY = 200f;
-	private static final float THRESHOLD_FLING_DISTANCE_LEFT = 100f;
-	private static final float THRESHOLD_FLING_DISTANCE_RIGHT = -100f;
+    private static final float THRESHOLD_FLING_VELOCITY = 200f;
+    private static final float THRESHOLD_FLING_DISTANCE_LEFT = 100f;
+    private static final float THRESHOLD_FLING_DISTANCE_RIGHT = -100f;
 
-	private GridView mSubSectionList;
-	private BoardListAdapter mListAdapter;
-	private View mLoadingView;
+    private GridView mSubSectionList;
+    private BoardListAdapter mListAdapter;
+    private View mLoadingView;
 
-	private Context mContext;
+    private Context mContext;
 
-	private String mSectionName;
+    private String mSectionName;
 
-	private GestureDetector mDetector;
+    private GestureDetector mDetector;
 
-	@Override
-	protected void init(Bundle savedInstanceState) {
-		setContentView(R.layout.act_subsection);
-		mContext = getApplicationContext();
-		mSectionName = getIntent().getStringExtra(IntentExtras.SECTION_NAME);
-		mDetector = new GestureDetector(new SlideGesture());
-		findViewsById();
-		initAdapter();
-		setListeners();
-		getSubSections();
-	}
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setContentView(R.layout.act_subsection);
+        mContext = getApplicationContext();
+        mSectionName = getIntent().getStringExtra(IntentExtras.SECTION_NAME);
+        mDetector = new GestureDetector(new SlideGesture());
+        findViewsById();
+        initAdapter();
+        setListeners();
+        getSubSections();
+    }
 
-	@Override
-	protected void findViewsById() {
-		mSubSectionList = (GridView) findViewById(R.id.subsection_gv);
-		mLoadingView = findViewById(R.id.loading_view);
-	}
+    @Override
+    protected void findViewsById() {
+        mSubSectionList = (GridView) findViewById(R.id.subsection_gv);
+        mLoadingView = findViewById(R.id.loading_view);
+    }
 
-	@Override
-	protected void setListeners() {
-		mSubSectionList.setOnItemClickListener(this);
-		mSubSectionList.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				if (mDetector.onTouchEvent(event)) {
-					return true;
-				}
-				return false;
-			}
-		});
-	}
+    @Override
+    protected void setListeners() {
+        mSubSectionList.setOnItemClickListener(this);
+        mSubSectionList.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mDetector.onTouchEvent(event)) {
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		Board board = mListAdapter.getItem(position);
-		if (null == board || TextUtils.isEmpty(board.getName())) {
-			return;
-		}
-		Intent intent = new Intent();
-		if (board.isSubSection()) {
-			intent.putExtra(IntentExtras.SECTION_NAME, board.getName());
-			intent.setClass(SubSectionActivity.this, SubSectionActivity.class);
-		} else {
-			intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
-			intent.setClass(SubSectionActivity.this, BoardActivity.class);
-		}
-		startActivity(intent);
-	}
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+            long id) {
+        Board board = mListAdapter.getItem(position);
+        if (null == board || TextUtils.isEmpty(board.getName())) {
+            return;
+        }
+        Intent intent = new Intent();
+        if (board.isSubSection()) {
+            intent.putExtra(IntentExtras.SECTION_NAME, board.getName());
+            intent.setClass(SubSectionActivity.this, SubSectionActivity.class);
+        } else {
+            intent.putExtra(IntentExtras.BOARD_NAME, board.getName());
+            intent.setClass(SubSectionActivity.this, BoardActivity.class);
+        }
+        startActivity(intent);
+    }
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		return mDetector.onTouchEvent(event);
-	}
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return mDetector.onTouchEvent(event);
+    }
 
-	@Override
-	public void onTaskFinished(AbsTask task, Object result) {
+    @Override
+    public void onTaskFinished(AbsTask task, Object result) {
 
-		mLoadingView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.GONE);
 
-		if (null == result) {
-			BYRToast.showLongToast(mContext, R.string.fail_get_content);
-		} else {
-			mSubSectionList.setVisibility(View.VISIBLE);
-			Section section = (Section) result;
-			mListAdapter.setContent(section.getBoard());
-			mListAdapter.notifyDataSetChanged();
-		}
-	}
+        if (null == result) {
+            BYRToast.showLongToast(mContext, R.string.fail_get_content);
+        } else {
+            mSubSectionList.setVisibility(View.VISIBLE);
+            Section section = (Section) result;
+            mListAdapter.setContent(section.getBoard());
+            mListAdapter.notifyDataSetChanged();
+        }
+    }
 
-	private void initAdapter() {
-		mListAdapter = new BoardListAdapter(mContext);
-		mSubSectionList.setAdapter(mListAdapter);
-	}
+    private void initAdapter() {
+        mListAdapter = new BoardListAdapter(mContext);
+        mSubSectionList.setAdapter(mListAdapter);
+    }
 
-	private void getSubSections() {
-		new GetSubSectionTask(mContext, mSectionName, this).execute();
-	}
+    private void getSubSections() {
+        new GetSubSectionTask(mContext, mSectionName, this).execute();
+    }
 
-	private void slideToOtherSection(int name) {
-		mSectionName = String.valueOf(name);
-		mLoadingView.setVisibility(View.VISIBLE);
-		mSubSectionList.setVisibility(View.GONE);
-		new GetSubSectionTask(mContext, mSectionName, this).execute();
-	}
+    private void slideToOtherSection(int name) {
+        mSectionName = String.valueOf(name);
+        mLoadingView.setVisibility(View.VISIBLE);
+        mSubSectionList.setVisibility(View.GONE);
+        new GetSubSectionTask(mContext, mSectionName, this).execute();
+    }
 
-	private class SlideGesture implements OnGestureListener {
+    private class SlideGesture implements OnGestureListener {
 
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-				float velocityY) {
-			float deltaX = e2.getX() - e1.getX();
-			float deltaY = e2.getY() - e1.getY();
-			if (!mSubSectionList.isShown()) {
-				return false;
-			}
-			if (Math.abs(deltaX) / 3 < Math.abs(deltaY)) {
-				return false;
-			}
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                float velocityY) {
+            float deltaX = e2.getX() - e1.getX();
+            float deltaY = e2.getY() - e1.getY();
+            if (!mSubSectionList.isShown()) {
+                return false;
+            }
+            if (Math.abs(deltaX) / 3 < Math.abs(deltaY)) {
+                return false;
+            }
 
-			int name = 0;
-			try {
-				name = Integer.valueOf(mSectionName);
-			} catch (Exception e) {
-				name = -1;
-			}
-			if (name == -1) {
-				return false;
-			}
+            int name = 0;
+            try {
+                name = Integer.valueOf(mSectionName);
+            } catch (Exception e) {
+                name = -1;
+            }
+            if (name == -1) {
+                return false;
+            }
 
-			if (deltaX > THRESHOLD_FLING_DISTANCE_LEFT
-					&& Math.abs(velocityX) > THRESHOLD_FLING_VELOCITY
-					&& name != 0) {
-				name--;
-				slideToOtherSection(name);
-				return true;
-			} else if (deltaX < THRESHOLD_FLING_DISTANCE_RIGHT
-					&& Math.abs(velocityX) > THRESHOLD_FLING_VELOCITY
-					&& name != 8) {
-				name++;
-				slideToOtherSection(name);
-				return true;
-			}
+            if (deltaX > THRESHOLD_FLING_DISTANCE_LEFT
+                    && Math.abs(velocityX) > THRESHOLD_FLING_VELOCITY
+                    && name != 0) {
+                name--;
+                slideToOtherSection(name);
+                return true;
+            } else if (deltaX < THRESHOLD_FLING_DISTANCE_RIGHT
+                    && Math.abs(velocityX) > THRESHOLD_FLING_VELOCITY
+                    && name != 8) {
+                name++;
+                slideToOtherSection(name);
+                return true;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
-		@Override
-		public boolean onDown(MotionEvent e) {
-			return false;
-		}
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return false;
+        }
 
-		@Override
-		public void onShowPress(MotionEvent e) {
-		}
+        @Override
+        public void onShowPress(MotionEvent e) {
+        }
 
-		@Override
-		public boolean onSingleTapUp(MotionEvent e) {
-			return false;
-		}
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            return false;
+        }
 
-		@Override
-		public boolean onScroll(MotionEvent e1, MotionEvent e2,
-				float distanceX, float distanceY) {
-			return false;
-		}
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2,
+                float distanceX, float distanceY) {
+            return false;
+        }
 
-		@Override
-		public void onLongPress(MotionEvent e) {
-		}
+        @Override
+        public void onLongPress(MotionEvent e) {
+        }
 
-	}
+    }
 
 }
