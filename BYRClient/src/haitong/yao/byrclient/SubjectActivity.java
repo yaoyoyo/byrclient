@@ -47,7 +47,7 @@ public class SubjectActivity extends NoTitleActivity implements
     private int mId;
     private int mCurrentPage;
     private Pagination mPagination;
-
+    
     @Override
     protected void init(Bundle savedInstanceState) {
         setContentView(R.layout.act_subject);
