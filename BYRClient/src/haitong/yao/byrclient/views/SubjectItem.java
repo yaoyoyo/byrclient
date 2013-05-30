@@ -3,34 +3,33 @@ package haitong.yao.byrclient.views;
 import haitong.yao.byrclient.R;
 import haitong.yao.byrclient.models.Article;
 import haitong.yao.byrclient.models.SingleAttachment;
-import haitong.yao.byrclient.tasks.AbsTask;
-import haitong.yao.byrclient.tasks.GetImageTask;
-import haitong.yao.byrclient.tasks.ITaskFinishListener;
 import haitong.yao.byrclient.utils.Utils;
 
-import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SubjectItem extends FrameLayout implements ITaskFinishListener {
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+public class SubjectItem extends FrameLayout {
 
     private Context mContext;
     private Handler mHandler;
-    private HashMap<String, ImageView> mHashMap;
 
     private int mPosition;
     private Article mArticle;
 
+    private ImageLoader mImageLoader;
     private View mParent;
     private TextView mId;
     private ImageView mPortrait;
@@ -43,25 +42,9 @@ public class SubjectItem extends FrameLayout implements ITaskFinishListener {
         super(context);
         mContext = context;
         mHandler = handler;
-        mHashMap = new HashMap<String, ImageView>();
+        mImageLoader = ImageLoader.getInstance();
         mPosition = position;
         initView();
-    }
-
-    @Override
-    public void onTaskFinished(final AbsTask task, final Object result) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (null != result) {
-                    String url = task.getUrl();
-                    ImageView img = mHashMap.get(url);
-                    if (null != img) {
-                        img.setImageBitmap((Bitmap) result);
-                    }
-                }
-            }
-        });
     }
 
     public void setArticle(Article article) {
@@ -80,7 +63,6 @@ public class SubjectItem extends FrameLayout implements ITaskFinishListener {
         mContent = (TextView) mParent.findViewById(R.id.subject_item_content);
         mAttachments = (LinearLayout) mParent
                 .findViewById(R.id.subject_item_attachments);
-        mAttachments.setOrientation(LinearLayout.VERTICAL);
     }
 
     private void notifyDataChanged() {
@@ -116,8 +98,9 @@ public class SubjectItem extends FrameLayout implements ITaskFinishListener {
         mContent.setText(content);
         Linkify.addLinks(mContent, Linkify.ALL);
 
-        mHashMap.put(portrait, mPortrait);
-        new GetImageTask(mContext, portrait, this).execute();
+        if (!TextUtils.isEmpty(portrait)) {
+            mImageLoader.displayImage(portrait, mPortrait);
+        }
 
         setAttachmentView();
 
@@ -134,21 +117,23 @@ public class SubjectItem extends FrameLayout implements ITaskFinishListener {
         List<SingleAttachment> files = mArticle.getAttachment().getFiles();
 
         for (SingleAttachment singleAttachment : images) {
-            // String url = singleAttachment.getUrl();
-            // ImageView img = new ImageView(mContext);
-            // img.setScaleType(ScaleType.CENTER_INSIDE);
-            // mAttachments.addView(img, params);
-            // mHashMap.put(url, img);
-            // new GetImageTask(mContext, url, this).execute();
+            String url = singleAttachment.getThumbnailSmall()
+                    + "?appkey=78e223c052793f0b";
+            ImageView img = new ImageView(mContext);
+            img.setScaleType(ScaleType.CENTER_INSIDE);
+            mAttachments.addView(img, params);
+            if (!TextUtils.isEmpty(url)) {
+                mImageLoader.displayImage(url, img);
+            }
         }
 
         for (SingleAttachment singleAttachment : files) {
-            String name = singleAttachment.getName();
-            TextView text = new TextView(mContext);
-            text.setSingleLine();
-            text.setText(name);
-            Linkify.addLinks(text, Linkify.ALL);
-            mAttachments.addView(text, params);
+            // String name = singleAttachment.getName();
+            // TextView text = new TextView(mContext);
+            // text.setSingleLine();
+            // text.setText(name);
+            // Linkify.addLinks(text, Linkify.ALL);
+            // mAttachments.addView(text, params);
         }
     }
 

@@ -72,7 +72,7 @@ public class Attachments implements Serializable {
         JSONObject obj;
         try {
             obj = new JSONObject(json);
-            JSONArray tempArray = obj.optJSONArray("array");
+            JSONArray tempArray = obj.optJSONArray("file");
             if (null != tempArray) {
                 int size = tempArray.length();
                 for (int i = 0; i < size; i++) {

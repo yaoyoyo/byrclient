@@ -1,20 +1,17 @@
 package haitong.yao.byrclient;
 
 import haitong.yao.byrclient.models.User;
-import haitong.yao.byrclient.tasks.AbsTask;
-import haitong.yao.byrclient.tasks.GetImageTask;
-import haitong.yao.byrclient.tasks.ITaskFinishListener;
 import haitong.yao.byrclient.utils.BYRToast;
 import haitong.yao.byrclient.utils.Utils;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UserInfoActivity extends NoTitleActivity implements
-        ITaskFinishListener {
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+public class UserInfoActivity extends NoTitleActivity {
 
     private User mUser;
 
@@ -30,10 +27,13 @@ public class UserInfoActivity extends NoTitleActivity implements
 
     private Context mContext;
 
+    private ImageLoader mImageLoader;
+
     @Override
     protected void init(Bundle savedInstanceState) {
         setContentView(R.layout.act_userinfo);
         mContext = getApplicationContext();
+        mImageLoader = ImageLoader.getInstance();
         findViewsById();
         initData();
     }
@@ -105,7 +105,7 @@ public class UserInfoActivity extends NoTitleActivity implements
 
             String imageUrl = mUser.getFaceUrl();
             if (null != imageUrl && imageUrl.length() > 0) {
-                new GetImageTask(mContext, imageUrl, this).execute();
+                mImageLoader.displayImage(imageUrl, mPortrait);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -114,20 +114,4 @@ public class UserInfoActivity extends NoTitleActivity implements
         }
     }
 
-    @Override
-    public void onTaskFinished(AbsTask task, Object result) {
-
-        if (null == result) {
-            if (mUser.getGender().equals("f")) {
-                mPortrait.setImageResource(R.drawable.userinfo_default_f);
-            } else {
-                mPortrait.setImageResource(R.drawable.userinfo_default_m);
-            }
-            return;
-        }
-
-        if (result instanceof Bitmap) {
-            mPortrait.setImageBitmap((Bitmap) result);
-        }
-    }
 }
