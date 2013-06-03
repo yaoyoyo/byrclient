@@ -67,6 +67,7 @@
     <string name="subject_item_first">沙发</string>
     <string name="subject_item_floor">%d楼</string>
     <string name="subject_item_info">用户：%1$s (%2$s)\n发表时间：%3$s</string>
+    <string name="subject_item_attachment"><u>附件列表</u></string>
 
     <!-- 列表工具条 -->
     <string name="list_function_bar_home">主页</string>
